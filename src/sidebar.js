@@ -11,6 +11,7 @@ let createSidebarContainer = (content) => {
     content.appendChild(sidebarContainer)
 }
 
+
 export{
     loadSidebar
 }
