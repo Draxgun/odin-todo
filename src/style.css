@@ -40,7 +40,18 @@ body{
 }
 
 .sidebarContainer {
+    display: flex;
+    flex-direction: column;
     background-color: var(--blue);
+}
+
+.sidebarButton{
+    background-color: var(--blue);
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    color: var(--beige);
+    font-size: calc(20px + 1vw);
 }
 
 .taskContainer{
