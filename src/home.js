@@ -1,18 +1,22 @@
+import {createHeader}  from './header'
 /* HTML Structure */
 
-/* Header */
-let  header = document.createElement('div')
-header.classList.add('header')
-document.body.appendChild(header)
+let loadPageStucture = () => {
 
-/* Content */
-let content = document.createElement('div')
-content.classList.add('content')
-document.body.appendChild(content)
+    /*Creates the header*/
+    createHeader()
+    
+    /* Content */
+    let content = document.createElement('div')
+    content.classList.add('content')
+    document.body.appendChild(content)
 
-/*Footer*/
-let footer = document.createElement('div')
-footer.classList.add('footer')
-document.body.appendChild(footer)
+}
+
+export{
+    loadPageStucture
+}
+
+
 
 

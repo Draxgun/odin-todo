@@ -1,0 +1,34 @@
+:root{
+    --navy:  #1C3879;
+    --blue: #607EAA;
+    --beige: #EAE3D2;
+    --winter: #F9F5EB;
+}
+
+
+*{
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--winter);
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--navy);
+    font-size: calc(30px + 3vw);
+    color: var(--beige);
+    font-weight: bold;
+    padding: 20px;
+}
