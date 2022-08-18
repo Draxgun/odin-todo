@@ -6,6 +6,7 @@ let createContent = () => {
     let content = createContentContainer()
     loadSidebar(content)
     loadTaskSection(content)
+
     
 }
 
