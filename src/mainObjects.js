@@ -1,13 +1,11 @@
 class project {
 
-    constructor(title,description,dueDate,priority,notes,tasks,checklist) {
+    constructor(title,description,dueDate,tasks,color) {
+     this.color = color
      this.tasks = tasks
      this.title = title
      this.description = description
      this.dueDate = dueDate
-     this.priority = priority
-     this.notes = notes
-     this.checklist = checklist
     }
     
     /*Deltes a task from a project */

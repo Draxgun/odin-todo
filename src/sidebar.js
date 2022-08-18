@@ -51,7 +51,7 @@ let addTaskButton = () => {
 
     let addButton = document.getElementById('addButton')
     let taskContent = createTaskModal()
-    createModalStructure(taskContent,'task','Add a task',addButton)
+    createModalStructure(taskContent,'task','Add a...',addButton)
 
 
 }

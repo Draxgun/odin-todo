@@ -50,7 +50,9 @@ body{
     border: none;
     color: var(--beige);
     font-size: calc(15px + 1vw);
-    margin: 0 30px;
+    margin-left: 20px ;
+    margin-right: 100px;
+    text-align: start;
 }
 
 .taskSectionContainer{
@@ -78,16 +80,28 @@ body{
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    background-color: var(--beige);
+    border-radius: 10px;
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 800px;
+    max-width: 80%; 
+    
   }
   
+  .taskHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modalHeaderTitle{
+    font-size: 2rem;
+  }
   /* The Close Button */
   .close {
-    color: #aaa;
+    background: none;
     float: right;
     font-size: 28px;
     font-weight: bold;

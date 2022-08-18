@@ -1,23 +1,26 @@
 import {capitalizeFirstLetter} from './capitalize'
 import {createDOMContainer,createDomElement} from './domCreators'
+import {createTaskOption} from './taskModal'
 
 
 
 let createTaskModal = () => {
     
-    let mainContainer = createDOMContainer('','testContent')
 
-    let structure = ['project','title','description','dueDate','priority','notes','checklist']
+    let mainContainer = createTaskOption()
+    // let mainContainer = createDOMContainer('','testContent')
+
+    // let structure = ['project','title','description','dueDate','priority','notes','checklist']
 
   
-    structure.forEach(field => {
+    // structure.forEach(field => {
         
-        let name = createDomElement('div',field,`modalFieldTitle`,`${capitalizeFirstLetter(field)}`)
-        mainContainer.appendChild(name)
+    //     let name = createDomElement('div',field,`modalFieldTitle`,`${capitalizeFirstLetter(field)}`)
+    //     mainContainer.appendChild(name)
 
-        let input = createDomElement('input',field,`modalFieldInput`,``)
-        mainContainer.appendChild(input)
-    })
+    //     let input = createDomElement('input',field,`modalFieldInput`,``)
+    //     mainContainer.appendChild(input)
+    // })
 
     
     return mainContainer
@@ -30,6 +33,8 @@ let createModalStructure = (content,modalName,title,openButton)=>{
     /* Creates the modal Container */
     let modalContainer = createDOMContainer(modalName,'modal')
     
+    let modalContent = createDOMContainer('','modal-content')
+
     /* Creates the modal header */
     let modalHeader = createDOMContainer('',`${modalName}Header`)
     
@@ -41,9 +46,10 @@ let createModalStructure = (content,modalName,title,openButton)=>{
     modalHeader.appendChild(close)
 
     /* Adds the modal */
-    modalContainer.appendChild(modalHeader)
-    modalContainer.appendChild(content)
+    modalContent.appendChild(modalHeader)
+    modalContent.appendChild(content)
 
+    modalContainer.appendChild(modalContent)
 
     openButton.addEventListener('click',()=>{
         console.log('hola')
@@ -59,6 +65,7 @@ let createModalStructure = (content,modalName,title,openButton)=>{
     })
 
 }
+
 
 
 export {
