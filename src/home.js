@@ -10,10 +10,6 @@ let loadPageStucture = () => {
 
     /*Creates the header*/
     createHeader()
-
-     /* Creates the modal stucutre */
-     createModal()
-
     /* Creates the content side */
     createContent()
     
