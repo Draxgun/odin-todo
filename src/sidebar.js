@@ -1,7 +1,11 @@
+import {capitalizeFirstLetter} from './capitalize'
+import {createModalStructure} from './modal'
+ 
 /* Creates the side bar*/
 let loadSidebar= (content) => {
     let sidebarContainer = createSidebarContainer(content)
     createSidebar(sidebarContainer)
+    addButtonListeners()
 }
 
 let createSidebarContainer = (content) => {
@@ -15,7 +19,7 @@ let createSidebarContainer = (content) => {
 
 let createSidebar = (container) => {
     
-    let itemNames = ['home','today','week','month','projects']
+    let itemNames = ['home','today','week','month','projects','add']
 
     itemNames.forEach(item => {
         createSidebarItem(item,container)
@@ -36,10 +40,15 @@ let createSidebarItem = (name,container) =>{
 
 }
 
+let addButtonListeners = () => {
+    addFunction()
+}
 
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+let addFunction = () => {
+    let button = document.getElementById('addButton')
+    button.addEventListener('click',() =>{
+        createModalStructure()
+    })
 }
 
 export{
