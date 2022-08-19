@@ -1,11 +1,15 @@
 import {capitalizeFirstLetter} from './capitalize'
 
 let createDOMContainer = (name,classlist) =>{
+
     let element = document.createElement('div')
     element.setAttribute('id',`${name}`)
     element.classList.add(`${classlist}`)
-
+    
     return element
+    
+    
+  
 }
 
 let createDomElement = (type,name,classlist,textContent) =>{
