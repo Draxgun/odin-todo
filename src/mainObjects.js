@@ -18,9 +18,8 @@ class project {
 
 class task extends project {
 
-    constructor(title,description,dueDate,priority,notes,project,checklist) {
+    constructor(title,dueDate,priority,notes,project,checklist) {
      this.title = title
-     this.description = description
      this.dueDate = dueDate
      this.priority = priority
      this.notes = notes

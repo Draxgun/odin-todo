@@ -79,7 +79,7 @@ body{
   }
   
   /* Modal Content/Box */
-  .modal-content {
+.modal-content {
     background-color: var(--beige);
     border-radius: 10px;
     margin: 15% auto; 
@@ -88,28 +88,134 @@ body{
     width: 800px;
     max-width: 80%; 
     
-  }
+}
   
-  .taskHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
-  .modalHeaderTitle{
-    font-size: 2rem;
-  }
-  /* The Close Button */
-  .close {
-    background: none;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+.taskHeader{
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeaderTitle{
+  font-size: 2rem;
+}
+/* The Close Button */
+.close {
+  background: none;
+  float: right;
+  font-size: 20px;
+  border: none;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Project Modal */
+.projectHeader{
+  padding-bottom: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectContainer{
+  background-color: var(--winter);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#titleProjectInput{
+  display: flex;
+  border: none;
+  background-color: var(--winter);
+  width: 100%;
+  font-size: 2rem;
+  border-bottom: solid 3px black;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
   
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+}
+
+.projectContentContainer{
+  display: flex;
+  width: 100%;
+}
+
+#descriptionProject{
+  display: flex;
+  border: none;
+  background-color: var(--winter);
+  width: 90%;
+  font-size: 1rem;
+  padding: 10px;
+  overflow-wrap: break-word;
+  font-weight: bold;
+  resize: none;
+  height: 200px;
+  max-height: 50%;
+}
+
+.rightContainer{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  width: 200px;
+  font-size: 1rem;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.colorContainer, .dateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding:10px;
+  gap: 10px;
+}
+#colorPickerInput{
+  border: none;
+  background-color: var(--winter);
+}
+
+#datePickerInput{
+
+  border: none;
+  background-color: var(--winter);
+  
+}
+
+.projectAddButtonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addProjectButton{
+  border: none;
+  background-color: var(--winter);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#addProjectButton:hover{
+  text-decoration: underline;
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

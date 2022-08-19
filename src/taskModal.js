@@ -10,9 +10,16 @@ let createTaskOption = () => {
     let project =  createDomElement('button','modalProject','modalTaskButton','Project')
     let task =  createDomElement('button','modalTask','modalTaskButton','Task')
 
-    createModalStructure(projectOption(),'test','',project)
+    createModalStructure(createProjectStructure(),'project','Add your project',project)
+
 
     project.addEventListener('click',()=>{
+        let modalContainer = document.getElementById('task')
+        modalContainer.style.display = "none";
+        document.body.removeChild(modalContainer)
+    })
+
+    task.addEventListener('click',()=>{
         let modalContainer = document.getElementById('task')
         modalContainer.style.display = "none";
         document.body.removeChild(modalContainer)
@@ -24,13 +31,6 @@ let createTaskOption = () => {
     return mainContainer
 }
 
-let projectOption = () => {
-
-        let test = createProjectStructure()
-        console.log('bola')
-        return test
-
-}
 
 let createProjectStructure = () => {
         
@@ -46,9 +46,8 @@ let createProjectStructure = () => {
     let contentSide = createDOMContainer("",'projectContentContainer')
     
     /*Description*/
-    let descriptionBox = createDomElement('input','descriptionProject','modalTextInput','')
+    let descriptionBox = createDomElement('textarea','descriptionProject','modalTextInput','')
     descriptionBox.placeholder = 'The project consists of ....'
-    descriptionBox.type = 'text'
 
     contentSide.appendChild(descriptionBox)
 
@@ -73,14 +72,14 @@ let createProjectStructure = () => {
     let dateBox = createDOMContainer('','dateContainer')
 
     /* Color Title */
-    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a date')
+    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a due date')
     dateBox.appendChild(dateTitle)
     
     /*ColorPicker*/
     let datePicker = createDomElement('input','datePicker','dateInput','')
     datePicker.type = 'date'
     
-    dateBox.appendChild(dateTitle)   
+    dateBox.appendChild(datePicker)   
 
     rightContainer.appendChild(colorBox)
     rightContainer.appendChild(dateBox)
@@ -88,7 +87,14 @@ let createProjectStructure = () => {
     contentSide.appendChild(rightContainer)
     mainContainer.appendChild(contentSide)
 
+    /*Project Container */
+    let addProjectContainer = createDOMContainer('','projectAddButtonContainer')
 
+    let addButton = createDomElement('button','addProject','addProject','Add project')
+    
+    addProjectContainer.appendChild(addButton)
+
+    mainContainer.append(addProjectContainer)
     return mainContainer
 
 }
@@ -105,45 +111,31 @@ let createTaskStructure = () => {
 
     /*Content description*/
     let contentSide = createDOMContainer("",'taskContentContainer')
-    
-    /*Description*/
-    let descriptionBox = createDomElement('input','descriptionTask','modalTextInput','')
-    descriptionBox.placeholder = 'The task consists of ....'
-    descriptionBox.type = 'text'
 
-    contentSide.appendChild(descriptionBox)
+    /*notes*/
+    let notes  = createDomElement('input','noteFiled','note','')
+    notes.placeholder = 'Some notes of the task...'
+    
+    /*Project*/
+    let projectFather = createDomElement('input')
 
     /*Right side container*/
     let rightContainer = createDOMContainer("",'rightContainer')
 
-    /*Color*/
-    let colorBox = createDOMContainer("",'colorContainer')
-
-    /* Color Title */
-    let colorTitle = createDomElement('div','colorTitle','titleTextContent','Choose a color')
-    colorBox.appendChild(colorTitle)
-    
-    /*ColorPicker*/
-    let colorPicker = createDomElement('input','colorPicker','colorInput','')
-    colorPicker.type = 'color'
-    
-    colorBox.appendChild(colorPicker)
-
-
     /*Date*/
     let dateBox = createDOMContainer('','dateContainer')
 
-    /* Color Title */
-    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a date')
+    /* Date Title */
+    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a due date')
     dateBox.appendChild(dateTitle)
     
-    /*ColorPicker*/
+    /*DatePicker*/
     let datePicker = createDomElement('input','datePicker','dateInput','')
     datePicker.type = 'date'
     
+
     dateBox.appendChild(dateTitle)   
 
-    rightContainer.appendChild(colorBox)
     rightContainer.appendChild(dateBox)
 
     contentSide.appendChild(rightContainer)
