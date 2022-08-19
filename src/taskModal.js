@@ -12,6 +12,12 @@ let createTaskOption = () => {
 
     createModalStructure(projectOption(),'test','',project)
 
+    project.addEventListener('click',()=>{
+        let modalContainer = document.getElementById('task')
+        modalContainer.style.display = "none";
+        document.body.removeChild(modalContainer)
+    })
+
     mainContainer.appendChild(project)
     mainContainer.appendChild(task)
 
@@ -85,6 +91,66 @@ let createProjectStructure = () => {
 
     return mainContainer
 
+}
+
+let createTaskStructure = () => {
+    
+    let mainContainer = createDOMContainer("",'projectContainer')
+
+    
+    /* Gets the title input of the container*/
+    let titleContainer = createDomElement('input','titleTask','modalInput','')
+    titleContainer.placeholder = 'The tasks title...'
+    mainContainer.appendChild(titleContainer)
+
+    /*Content description*/
+    let contentSide = createDOMContainer("",'taskContentContainer')
+    
+    /*Description*/
+    let descriptionBox = createDomElement('input','descriptionTask','modalTextInput','')
+    descriptionBox.placeholder = 'The task consists of ....'
+    descriptionBox.type = 'text'
+
+    contentSide.appendChild(descriptionBox)
+
+    /*Right side container*/
+    let rightContainer = createDOMContainer("",'rightContainer')
+
+    /*Color*/
+    let colorBox = createDOMContainer("",'colorContainer')
+
+    /* Color Title */
+    let colorTitle = createDomElement('div','colorTitle','titleTextContent','Choose a color')
+    colorBox.appendChild(colorTitle)
+    
+    /*ColorPicker*/
+    let colorPicker = createDomElement('input','colorPicker','colorInput','')
+    colorPicker.type = 'color'
+    
+    colorBox.appendChild(colorPicker)
+
+
+    /*Date*/
+    let dateBox = createDOMContainer('','dateContainer')
+
+    /* Color Title */
+    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a date')
+    dateBox.appendChild(dateTitle)
+    
+    /*ColorPicker*/
+    let datePicker = createDomElement('input','datePicker','dateInput','')
+    datePicker.type = 'date'
+    
+    dateBox.appendChild(dateTitle)   
+
+    rightContainer.appendChild(colorBox)
+    rightContainer.appendChild(dateBox)
+
+    contentSide.appendChild(rightContainer)
+    mainContainer.appendChild(contentSide)
+
+
+    return mainContainer
 }
 
 let readProject = (project) =>{
