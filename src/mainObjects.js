@@ -1,3 +1,5 @@
+import {saveInLocalStorage, getFromLocalStorage} from './localStorage'
+
 class Project {
 
     constructor(title,description,dueDate,tasks,color) {
@@ -42,8 +44,31 @@ class Task extends Project {
     }
 }
 
+
+
+const mainDatabase = (() => {
+
+    /*gets the info of the main database*/
+    let data  = () => getFromLocalStorage('projectDatabase');
+    
+    /*Adds a project to the main database*/
+    const addProject = (project) => {
+        let newData = data()
+        console.log(newData)
+        newData.push(project)
+        saveInLocalStorage('projectDatabase',newData)
+    }
+
+
+    return {
+      addProject,
+      data,
+    };
+  })();
+
 export{
     Project,
-    Task
+    Task,
+    mainDatabase
 }
   

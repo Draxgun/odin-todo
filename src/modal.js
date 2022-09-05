@@ -66,6 +66,8 @@ let createModalStructure = (content,modalName,title,openButton)=>{
 }
 
 let closeModals = () => {
+    
+    let modalContainer = document.querySelector('modal')[0]
     modalContainer.style.display = "none";
     document.body.removeChild(modalContainer)
 }
@@ -74,5 +76,6 @@ let closeModals = () => {
 
 export {
     createTaskModal,
-    createModalStructure
+    createModalStructure,
+    closeModals,
 }
