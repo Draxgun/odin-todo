@@ -60,38 +60,36 @@ let addTaskButton = () => {
 
 let addProjectButton = () => {
     let addButton = document.getElementById('projectsButton')
+    let content = loadProjectCollapsible()
     addButton.addEventListener('click',()=>{
-        addProjectCollapsible()
+        if (content.style.display === "flex") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "flex";
+          }
     })
     
 }
 
 
 let loadProjectCollapsible = () => {
+    
+    let addButton = document.getElementById('projectsButton')
     let projectTitles = mainDatabase.getProjectsTitles()
-    console.log(projects)
     let projectsContainer = createDomElement('div','','projectsContainer','')
 
-
     projectTitles.forEach(project => {
-        
+        let currentProject = createDomElement('button',`project ${project}`,'collapsible',`${project}`)
+        projectsContainer.appendChild(currentProject)
     });
+
+    addButton.insertAdjacentElement('afterend',projectsContainer)
+
+    return projectsContainer
 }
 
 
-let addProjectCollapsible= () => {
 
-    let projectTitles = mainDatabase.getProjectsTitles()
-    console.log(projects)
-    let projectsContainer = createDomElement('div','','projectsContainer','')
-
-
-    projectTitles.forEach(project => {
-        
-    });
-
-
-}
 
 export{
     loadSidebar

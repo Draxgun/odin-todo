@@ -49,10 +49,35 @@ body{
     padding: 10px;
     border: none;
     color: var(--beige);
-    font-size: calc(15px + 1vw);
+    font-size: calc(8px + 1vw);
     margin-left: 20px ;
     margin-right: 100px;
     text-align: start;
+}
+
+.sidebarButton:hover{
+  filter: brightness(85%);
+}
+
+/*Project Collapsable*/
+
+.projectsContainer {
+  flex-direction: column;
+  background-color:#92a0b4;
+  display: none;
+  overflow: hidden;
+}
+
+.projectsContainer > * {
+  background-color:#92a0b4;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  color: var(--beige);
+  font-size: calc(6px + 1vw);
+  margin-left: 35px ;
+  margin-right: 100px;
+  text-align: start;
 }
 
 .taskSectionContainer{
@@ -211,11 +236,10 @@ body{
   text-decoration: underline;
 }
 
-
-
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
 }
+
