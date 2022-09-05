@@ -1,5 +1,7 @@
 import {capitalizeFirstLetter} from './capitalize'
 import {createModalStructure,createTaskModal} from './modal'
+import {Project,Task,mainDatabase} from './mainObjects'
+import { createDomElement } from './domCreators'
  
 /* Creates the side bar*/
 let loadSidebar= (content) => {
@@ -31,7 +33,6 @@ let createSidebar = (container) => {
 
 }
 
-
 let createSidebarItem = (name,container) =>{
     
     let button = document.createElement('button')
@@ -44,14 +45,50 @@ let createSidebarItem = (name,container) =>{
 }
 
 let addButtonListeners = () => {
-    addTaskButton()
+    addTaskButton();
+    addProjectButton();
 }
 
 let addTaskButton = () => {
 
-    let addButton = document.getElementById('addButton')
-    let taskContent = createTaskModal()
-    createModalStructure(taskContent,'task','Add a...',addButton)
+    let addButton = document.getElementById('addButton');
+    let taskContent = createTaskModal();
+    createModalStructure(taskContent,'task','Add a...',addButton);
+
+
+}
+
+let addProjectButton = () => {
+    let addButton = document.getElementById('projectsButton')
+    addButton.addEventListener('click',()=>{
+        addProjectCollapsible()
+    })
+    
+}
+
+
+let loadProjectCollapsible = () => {
+    let projectTitles = mainDatabase.getProjectsTitles()
+    console.log(projects)
+    let projectsContainer = createDomElement('div','','projectsContainer','')
+
+
+    projectTitles.forEach(project => {
+        
+    });
+}
+
+
+let addProjectCollapsible= () => {
+
+    let projectTitles = mainDatabase.getProjectsTitles()
+    console.log(projects)
+    let projectsContainer = createDomElement('div','','projectsContainer','')
+
+
+    projectTitles.forEach(project => {
+        
+    });
 
 
 }

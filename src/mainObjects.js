@@ -54,15 +54,22 @@ const mainDatabase = (() => {
     /*Adds a project to the main database*/
     const addProject = (project) => {
         let newData = data()
-        console.log(newData)
         newData.push(project)
         saveInLocalStorage('projectDatabase',newData)
+    }
+
+    /*Gets the projectTitles*/
+    const getProjectsTitles = () => {
+        let newData = data()
+        let titles  = newData.map((project)=> {return project.title})
+        return titles
     }
 
 
     return {
       addProject,
       data,
+      getProjectsTitles
     };
   })();
 
