@@ -33,25 +33,29 @@ body{
 }
 
 .content{
-    display: flex;
-    flex: 10;
+  display: flex;
+  flex: 10;
 }
 
 .sidebarContainer {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--blue);
+  padding-top: 20px;
+  width: 100%;
+  flex: 1;
+  border-radius: 10px;
+
 }
+
 
 .sidebarButton{
     background-color: var(--blue);
     font-weight: bold;
-    padding: 10px;
+    padding: 10px calc(30px + 5vw) 10px 30px;
     border: none;
     color: var(--beige);
     font-size: calc(8px + 1vw);
-    margin-left: 20px ;
-    margin-right: 100px;
     text-align: start;
 }
 
@@ -60,29 +64,29 @@ body{
 }
 
 /*Project Collapsable*/
-
 .projectsContainer {
   flex-direction: column;
   background-color:#92a0b4;
   display: none;
   overflow: hidden;
+  
 }
 
 .projectsContainer > * {
   background-color:#92a0b4;
   font-weight: bold;
-  padding: 10px;
+  padding: 10px 0px 10px 40px;
   border: none;
   color: var(--beige);
-  font-size: calc(6px + 1vw);
-  margin-left: 35px ;
-  margin-right: 100px;
+  font-size: calc(4px + 0.75vw);
   text-align: start;
+  
 }
 
 .taskSectionContainer{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  flex: 8;
 }
 
 .taskSection{
@@ -103,7 +107,7 @@ body{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
-  /* Modal Content/Box */
+/* Modal Content/Box */
 .modal-content {
     background-color: var(--beige);
     border-radius: 10px;

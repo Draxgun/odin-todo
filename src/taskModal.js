@@ -4,6 +4,7 @@ import {Project,Task,mainDatabase} from './mainObjects'
 import {createModalStructure,closeModals} from './modal'
 import {saveInLocalStorage, getFromLocalStorage} from './localStorage'
 
+
 let createTaskOption = () => {
     
     let mainContainer = createDOMContainer('','optionContainer')
