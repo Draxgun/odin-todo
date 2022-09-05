@@ -44,6 +44,9 @@ let createSidebarItem = (name,container) =>{
 
 }
 
+
+
+
 let addButtonListeners = () => {
     addTaskButton();
     addProjectButton();
