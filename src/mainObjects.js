@@ -1,11 +1,12 @@
-class project {
+class Project {
 
     constructor(title,description,dueDate,tasks,color) {
-     this.color = color
-     this.tasks = tasks
-     this.title = title
-     this.description = description
-     this.dueDate = dueDate
+
+        this.title = title
+        this.description = description
+        this.dueDate = dueDate
+        this.tasks = tasks
+        this.color = color
     }
     
     /*Deltes a task from a project */
@@ -14,9 +15,13 @@ class project {
         task.splice(indexDel,1)
     }
 
+    addTask = (task) => {
+        this.tasks.push(task)
+    }
+
 }
 
-class task extends project {
+class Task extends Project {
 
     constructor(title,dueDate,priority,notes,project,checklist) {
      this.title = title
@@ -38,7 +43,7 @@ class task extends project {
 }
 
 export{
-    project,
-    task
+    Project,
+    Task
 }
   

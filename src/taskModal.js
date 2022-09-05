@@ -1,7 +1,8 @@
 import {capitalizeFirstLetter} from './capitalize'
 import {createDOMContainer,createDomElement} from './domCreators'
-import {project,task} from './mainObjects'
+import {Project,Task} from './mainObjects'
 import {createModalStructure} from './modal'
+import {saveInLocalStorage, getFromLocalStorage} from './localStorage'
 
 let createTaskOption = () => {
     
@@ -38,7 +39,7 @@ let createProjectStructure = () => {
 
     
     /* Gets the title input of the container*/
-    let titleContainer = createDomElement('input','titleProject','modalInput','')
+    let titleContainer = createDomElement('input','titleProject','projectInput','')
     titleContainer.placeholder = 'The projects title...'
     mainContainer.appendChild(titleContainer)
 
@@ -46,7 +47,7 @@ let createProjectStructure = () => {
     let contentSide = createDOMContainer("",'projectContentContainer')
     
     /*Description*/
-    let descriptionBox = createDomElement('textarea','descriptionProject','modalTextInput','')
+    let descriptionBox = createDomElement('textarea','descriptionProject','projectInput','')
     descriptionBox.placeholder = 'The project consists of ....'
 
     contentSide.appendChild(descriptionBox)
@@ -62,7 +63,7 @@ let createProjectStructure = () => {
     colorBox.appendChild(colorTitle)
     
     /*ColorPicker*/
-    let colorPicker = createDomElement('input','colorPicker','colorInput','')
+    let colorPicker = createDomElement('input','colorPicker','projectInput','')
     colorPicker.type = 'color'
     
     colorBox.appendChild(colorPicker)
@@ -76,7 +77,7 @@ let createProjectStructure = () => {
     dateBox.appendChild(dateTitle)
     
     /*ColorPicker*/
-    let datePicker = createDomElement('input','datePicker','dateInput','')
+    let datePicker = createDomElement('input','datePicker','projectInput','')
     datePicker.type = 'date'
     
     dateBox.appendChild(datePicker)   
@@ -92,12 +93,32 @@ let createProjectStructure = () => {
 
     let addButton = createDomElement('button','addProject','addProject','Add project')
     
+    addButton.addEventListener('click',()=>{
+        createProject()
+    })
+
     addProjectContainer.appendChild(addButton)
 
     mainContainer.append(addProjectContainer)
     return mainContainer
 
 }
+
+
+let createProject = () => {
+   let projectInput = document.querySelectorAll('.projectInput')
+
+   let project = new Project(
+    projectInput[0].value,
+    projectInput[1].value,
+    projectInput[3].value,
+    [],
+    projectInput[2].value
+   )
+
+    console.log(project)
+}
+
 
 let createTaskStructure = () => {
     
