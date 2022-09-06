@@ -52,24 +52,32 @@ const mainDatabase = (() => {
     let data  = () => getFromLocalStorage('projectDatabase');
     
     /*Adds a project to the main database*/
-    const addProject = (project) => {
+    let addProject = (project) => {
         let newData = data()
         newData.push(project)
         saveInLocalStorage('projectDatabase',newData)
     }
 
     /*Gets the projectTitles*/
-    const getProjectsTitles = () => {
+    let getProjectsTitles = () => {
         let newData = data()
         let titles  = newData.map((project)=> {return project.title})
         return titles
+    }
+
+    /*Get object by project name*/
+    const getProjectByTitle = (title) =>{
+        let newData = data();
+        newData = newData.find(item => item.title === title)
+        return newData
     }
 
 
     return {
       addProject,
       data,
-      getProjectsTitles
+      getProjectsTitles,
+      getProjectByTitle,
     };
   })();
 

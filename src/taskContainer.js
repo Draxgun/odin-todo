@@ -8,7 +8,6 @@ let loadTaskSection = (content) => {
 let createTaskSection = () => {
     let taskSectionContainer = document.createElement('div')
     taskSectionContainer.classList.add('taskSectionContainer')
-    taskSectionContainer.textContent ='asdas'
 
     return taskSectionContainer
 }

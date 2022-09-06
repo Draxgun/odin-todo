@@ -2,6 +2,7 @@ import {capitalizeFirstLetter} from './capitalize'
 import {createModalStructure,createTaskModal} from './modal'
 import {Project,Task,mainDatabase} from './mainObjects'
 import { createDomElement } from './domCreators'
+import {addProjectContentStructure} from './mainProjectDisplay'
  
 /* Creates the side bar*/
 let loadSidebar= (content) => {
@@ -82,8 +83,13 @@ let loadProjectCollapsible = () => {
     let projectsContainer = createDomElement('div','','projectsContainer','')
 
     projectTitles.forEach(project => {
-        let currentProject = createDomElement('button',`project ${project}`,'collapsible',`${project}`)
+        let currentProject = createDomElement('button',`${project}`,'collapsible',`${project}`)
         projectsContainer.appendChild(currentProject)
+
+        currentProject.addEventListener('click',()=>{
+            addProjectContentStructure(mainDatabase.getProjectByTitle(project)) 
+        })
+
     });
 
     addButton.insertAdjacentElement('afterend',projectsContainer)

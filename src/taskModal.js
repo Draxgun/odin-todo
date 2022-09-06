@@ -66,13 +66,49 @@ let createProjectStructure = () => {
     /* Color Title */
     let colorTitle = createDomElement('div','colorTitle','titleTextContent','Choose a color');
     colorBox.appendChild(colorTitle);
+
+
+    let colorPicked = createDomElement('input','colorPicker','projectInput','');
+    colorPicked.type = 'color'
+    colorPicked.setAttribute('required','')
+    
+    colorBox.appendChild(colorPicked);
+
     
     /*ColorPicker*/
-    let colorPicker = createDomElement('input','colorPicker','projectInput','');
-    colorPicker.setAttribute('required','')
-    colorPicker.type = 'color';
-    
-    colorBox.appendChild(colorPicker);
+    let colorPickerBox =  createDomElement('div','colorBox','colorBox','');
+
+    let colorOptions = {
+        purple: "#CB17E4",
+        pink:"#F761A1",
+        red:"#FF3333",
+        orange: "#FF8033",
+        green: "#36E417",
+        blue: "#3346FF",
+        lightBlue: "#17E4DB",
+        gray: "#E9E9E9",
+    }
+
+    Object.keys(colorOptions).forEach(color => {
+
+        let currentColor = colorOptions[color]
+
+        let currentColorButton = createDomElement('button',color,'colorPickerOption','')
+        currentColorButton.style.backgroundColor = currentColor
+
+        currentColorButton.addEventListener('click',() =>{
+            colorPicked.value = currentColor
+            colorPicked.disabled = true
+
+        })
+
+        colorPickerBox.appendChild(currentColorButton)
+      
+
+    });
+
+    colorBox.appendChild(colorPickerBox)
+
 
 
     /*Date*/
