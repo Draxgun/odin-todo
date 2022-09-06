@@ -95,6 +95,7 @@ let createProjectStructure = () => {
 
         let currentColorButton = createDomElement('button',color,'colorPickerOption','')
         currentColorButton.style.backgroundColor = currentColor
+        currentColorButton.type = 'button'
 
         currentColorButton.addEventListener('click',() =>{
             colorPicked.value = currentColor

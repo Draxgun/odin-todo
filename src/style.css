@@ -216,6 +216,20 @@ body{
   background-color: var(--winter);
 }
 
+.colorBox {
+  display: grid;
+  grid-template-columns: 20px 20px 20px 20px;
+  grid-template-rows: 20px 20px;
+  gap: 1px;
+  
+}
+
+.colorPickerOption{
+  width: 20px;
+  height: 20px;
+  border: solid 1px black;
+}
+
 #datePickerInput{
 
   border: none;
