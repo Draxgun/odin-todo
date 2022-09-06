@@ -70,6 +70,7 @@ let createProjectStructure = () => {
 
     let colorPicked = createDomElement('input','colorPicker','projectInput','');
     colorPicked.type = 'color'
+    colorPicked.value = '#CB17E4'
     colorPicked.setAttribute('required','')
     
     colorBox.appendChild(colorPicked);
