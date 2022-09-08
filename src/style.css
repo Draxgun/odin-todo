@@ -17,7 +17,7 @@ body{
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--winter);
+  background-color: var(--beige);
   padding: 30px;
 }
 
@@ -308,6 +308,7 @@ button:focus {
   display: flex;
   flex: auto;
   gap: 50px;
+  width: 100%;
 }
 
 /*Task modal section*/
@@ -324,6 +325,7 @@ button:focus {
 
 .bodyTaskContainer{
   display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: var(--winter);
   border-radius: 10px;
@@ -353,12 +355,21 @@ button:focus {
   
 }
 
+#addTaskButton{
+  background-color: var(--winter);
+  color: grey;
+  font-weight: bold;
+  font-size: calc(8px + 1vw);
+  border: none;
+  padding: 20px;
+}
 /*Right Side*/
 .contentRight{
   display: flex;
   flex: 2;
   flex-direction: column;
   gap: 10px;
+  width: 250px;
 }
 
 .contentDescriptionBox, .contentDateCounter{
@@ -373,5 +384,58 @@ button:focus {
   font-size: calc(10px + 1vw);
   font-weight: bold;
   color: black;
+
+}
+
+.descriptionBoxTitle{
+  width: auto;
   padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: solid 2px gray;
+  color: var(--winter);
+}
+
+.descriptionBoxContent::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.descriptionBoxContent {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.descriptionBoxContent{
+  padding: 10px;
+  color: black;
+  font-size: calc(5px + 1vw);
+  max-height: 500px;
+  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+/*Counter Box Top*/
+.counterBoxTop{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  color: black;
+  font-size: calc(5px + 1vw);
+  max-height: 400px;
+
+}
+
+.counterBoxBottom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  color: black;
+  font-size: calc(10px + 1vw);
+
 }

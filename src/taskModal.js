@@ -13,6 +13,7 @@ let createTaskOption = () => {
     let task =  createDomElement('button','modalTask','modalTaskButton','Task')
 
     createModalStructure(createProjectStructure(),'project','Add your project',project)
+    createModalStructure(selectProjectStrucutre(),'task','Choose your project',task)
 
 
     project.addEventListener('click',()=>{
@@ -169,15 +170,39 @@ let createProject = () => {
     return project
 }
 
+let selectProjectStrucutre = () => {
+
+    let mainContainer = createDOMContainer('','projectChoosingContainer')
+
+    /*Main title*/
+    let mainText = createDomElement('div','','projectChoosingText','Choose the project you want to add the task too')
+    mainContainer.appendChild(mainText)
+
+    /*Main Select*/
+    let projectInput = createDomElement('select','','selectInput','fproject')
+
+    projectInput.options.add(new Option('','',true,true))
+    projectInput.options[0].setAttribute('disabled','')
+    projectInput.options[0].setAttribute('hidden','')
+
+    let general = mainDatabase.getProjectsTitles();
+
+    for(let i = 0; i < general.length; i++){
+        projectInput.options.add(new Option(general[i], general[i]));
+    }   
+    
+    mainContainer.appendChild(projectInput)
+
+
+    return mainContainer
+}
 
 
 
-
-let createTaskStructure = () => {
+let createTaskStructure = (project) => {
     
     let mainContainer = createDOMContainer("",'projectContainer')
 
-    
     /* Gets the title input of the container*/
     let titleContainer = createDomElement('input','titleTask','modalInput','')
     titleContainer.placeholder = 'The tasks title...'

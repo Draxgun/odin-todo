@@ -61,9 +61,11 @@ let addProjectContentStructure = (project) => {
     })
 
 
-    let dateCounterTextBottom = createDomElement('div','','counterBoxBottom',`${intervalToDuration({start: new Date(), end: parseISO(project.dueDate)}).days}`)
+    let dateCounterTextMiddle = createDomElement('div','','counterBoxBottom',`${intervalToDuration({start: new Date(), end: parseISO(project.dueDate)}).days}`)
+    let dateCounterTextBottom = createDomElement('div','','counterBoxTop',`Day/s`)
 
     dateCounterBox.appendChild(dateCounterTextTop)
+    dateCounterBox.appendChild(dateCounterTextMiddle)
     dateCounterBox.appendChild(dateCounterTextBottom)
     rightSide.appendChild(dateCounterBox)
     /*Left Side*/
@@ -86,7 +88,13 @@ let addProjectContentStructure = (project) => {
     taskTableHeader.appendChild(priorityTable);
     taskTableHeader.appendChild(checkTable);
 
+    /*Add task button*/
+    let addTaskButton = createDomElement('button','addTask','addTask','+Add Task')
+
+    
+
     taskContent.appendChild(taskTableHeader);
+    taskContent.appendChild(addTaskButton)
     leftSide.appendChild(taskContent)
     
 
