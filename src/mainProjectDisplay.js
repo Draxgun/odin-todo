@@ -43,6 +43,7 @@ let addProjectContentStructure = (project) => {
 
     /*Description Table*/
     let descriptionTitle = createDomElement('div','','descriptionBoxTitle','Description');
+    descriptionTitle.style.backgroundColor = project.color
     let descriptionText = createDomElement('div','','descriptionBoxContent',project.description)
 
     descriptionBox.appendChild(descriptionTitle)
@@ -65,8 +66,40 @@ let addProjectContentStructure = (project) => {
     dateCounterBox.appendChild(dateCounterTextTop)
     dateCounterBox.appendChild(dateCounterTextBottom)
     rightSide.appendChild(dateCounterBox)
+    /*Left Side*/
+    
+    /*Task Section*/
+    let taskContent = createDOMContainer('','bodyTaskContainer')
 
+    /*Task Table header */
+    let taskTableHeader = createDOMContainer('','taskTableHeader')
+
+    taskTableHeader.style.backgroundColor = project.color
+
+    let dueDateTable = createDomElement('div','','taskTableHeaderElement','Due Date')
+    let nameTable = createDomElement('div','','taskTableHeaderElement','Name')
+    let priorityTable = createDomElement('div','','taskTableHeaderElement','Priority')
+    let checkTable = createDomElement('div','','taskTableHeaderElement','Checked')
+
+    taskTableHeader.appendChild(dueDateTable);
+    taskTableHeader.appendChild(nameTable);
+    taskTableHeader.appendChild(priorityTable);
+    taskTableHeader.appendChild(checkTable);
+
+    taskContent.appendChild(taskTableHeader);
+    leftSide.appendChild(taskContent)
+    
+
+
+
+    
+    
+    
+    
+    body.appendChild(leftSide)
     body.appendChild(rightSide)
+   
+
     
 
 

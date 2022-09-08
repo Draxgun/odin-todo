@@ -49,8 +49,11 @@ body{
 }
 
 .footer{
+  display: flex;
   flex: 1;
   text-align: center;
+  justify-content: center;
+  align-items: center;
   
 }
 
@@ -288,8 +291,8 @@ button:focus {
 /* Main project hub info */
 .contentHeader{
   border-radius: 10px;
-  padding: 30px 10px 30px 10px;
-  font-size: calc(10px + 1vw);
+  padding: 30px;
+  font-size: calc(20px + 1vw);
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -302,7 +305,73 @@ button:focus {
 }
 
 .contentBody{
-  background-color: var(--blue);
   display: flex;
   flex: auto;
+  gap: 50px;
+}
+
+/*Task modal section*/
+.contentLeft{
+  display: flex;
+  background-color: var(--winter);
+  flex-direction:row;
+  flex:10;
+  border-radius: 10px;
+  box-shadow: 9px 10px 5px -4px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 9px 10px 5px -4px rgba(0,0,0,0.25);
+  -moz-box-shadow: 9px 10px 5px -4px rgba(0,0,0,0.25);
+}
+
+.bodyTaskContainer{
+  display: flex;
+  width: 100%;
+  background-color: var(--winter);
+  border-radius: 10px;
+}
+
+.taskTableHeader{
+  display: grid;
+  grid-template-columns: 1.25fr 3fr 1.25fr 1.25fr;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  height: fit-content;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: solid 2px gray;
+}
+
+.taskTableHeaderElement{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+  font-size: calc(10px + 1vw);
+  color: var(--winter);
+  font-weight: bold;
+  
+}
+
+/*Right Side*/
+.contentRight{
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contentDescriptionBox, .contentDateCounter{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--winter);
+  border-radius: 10px;
+  box-shadow: 9px 10px 5px -4px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 9px 10px 5px -4px rgba(0,0,0,0.25);
+  -moz-box-shadow: 9px 10px 5px -4px rgba(0,0,0,0.25);
+  font-size: calc(10px + 1vw);
+  font-weight: bold;
+  color: black;
+  padding: 10px;
 }
