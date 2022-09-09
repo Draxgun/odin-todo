@@ -51,11 +51,13 @@ let createModalStructure = (content,modalName,title,openButton)=>{
 
     modalContainer.appendChild(modalContent)
 
-    openButton.addEventListener('click',()=>{
+
+    openButton.addEventListener('click', ()=>{
         document.body.appendChild(modalContainer)
         modalContainer.style.display = "block";
-
     })
+
+
     close.addEventListener('click',()=>{
         modalContainer.style.display = "none";
         document.body.removeChild(modalContainer)

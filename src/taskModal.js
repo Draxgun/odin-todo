@@ -15,7 +15,6 @@ let createTaskOption = () => {
     createModalStructure(createProjectStructure(),'project','Add your project',project)
     createModalStructure(selectProjectStrucutre(),'task','Choose your project',task)
 
-
     project.addEventListener('click',()=>{
         let modalContainer = document.getElementById('task')
         modalContainer.style.display = "none";
@@ -189,7 +188,31 @@ let selectProjectStrucutre = () => {
 
     for(let i = 0; i < general.length; i++){
         projectInput.options.add(new Option(general[i], general[i]));
-    }   
+    }
+
+
+
+    
+    projectInput.addEventListener('change',() =>{
+        
+
+
+        let invisibleButton = createDomElement('button','','invisible','a');
+        mainContainer.appendChild(invisibleButton)
+
+        let projectChosen = mainDatabase.getProjectByTitle(projectInput.value);
+
+        let projectStructure = createTaskStructure(projectChosen)
+        createModalStructure(projectStructure,'task','Add your task',invisibleButton)
+        invisibleButton.click()
+        projectInput.selectedIndex = -1
+
+        let modalContainer = document.getElementById('task')
+        modalContainer.style.display = "none";
+        document.body.removeChild(modalContainer)
+
+
+    })
     
     mainContainer.appendChild(projectInput)
 
@@ -198,28 +221,70 @@ let selectProjectStrucutre = () => {
 }
 
 
-
 let createTaskStructure = (project) => {
     
-    let mainContainer = createDOMContainer("",'projectContainer')
+    let mainForm = createDomElement('form','taskForm','taskFormContainer','')
+
+    let mainContainer = createDOMContainer("",'taskModalContainer')
+
+
+    /* Creates Top part Container */
+    let topContainer = createDOMContainer('','topTaskModalContainer')
+    topContainer.style.background = project.color
+
 
     /* Gets the title input of the container*/
     let titleContainer = createDomElement('input','titleTask','modalInput','')
     titleContainer.placeholder = 'The tasks title...'
-    mainContainer.appendChild(titleContainer)
+    titleContainer.setAttribute('required','')
+
+    topContainer.appendChild(titleContainer)
+
+
+    /*Project Name*/
+    let projectName = createDomElement('div','taskProjectTitle','taskProjecTitle',project.title)
+    topContainer.appendChild(projectName)
+
+
+    /* Appends it to the top container */
+    mainContainer.appendChild(topContainer)
 
     /*Content description*/
     let contentSide = createDOMContainer("",'taskContentContainer')
 
     /*notes*/
-    let notes  = createDomElement('input','noteFiled','note','')
+    let notes  = createDomElement('input','noteTask','noteTask','')
     notes.placeholder = 'Some notes of the task...'
     
-    /*Project*/
-    let projectFather = createDomElement('input')
 
-    /*Right side container*/
-    let rightContainer = createDOMContainer("",'rightContainer')
+
+    /*Checkbox Input*/
+    let checkboxInput = createDomElement('input','checkbox','checkboxInput','')
+    checkboxInput.type = 'checkbox'
+
+    /*Creates the middle container */
+    let middleContainer = createDOMContainer("",'middleContainer')
+
+
+    /*Project Priority*/
+
+    /*Slider Box*/
+    let sliderBox = createDOMContainer('','sliderContainer')
+
+    /*Slider Title*/
+    let sliderTitle = createDomElement('div','sliderTitle','titleTextContent','Priority: ')
+    sliderBox.appendChild(sliderTitle)
+
+    /*Slider Input*/
+    let sliderInput = createDomElement('input','sliderPicker','sliderInput','')
+    sliderInput.type = 'range'
+    sliderInput.setAttribute('min','1')
+    sliderInput.setAttribute('max','5')
+    sliderInput.setAttribute('step','1')
+
+    sliderBox.appendChild(sliderInput)
+
+    middleContainer.appendChild(sliderBox)
 
     /*Date*/
     let dateBox = createDOMContainer('','dateContainer')
@@ -231,12 +296,26 @@ let createTaskStructure = (project) => {
     /*DatePicker*/
     let datePicker = createDomElement('input','datePicker','dateInput','')
     datePicker.type = 'date'
-    
-
     dateBox.appendChild(dateTitle)   
 
-    rightContainer.appendChild(dateBox)
+    /*Right side container*/
+    let rightContainer = createDOMContainer("",'rightContainer')
 
+    /*Checkbox Container*/
+    let checkboxContainer = createDOMContainer('','checkboxContainer')
+
+    /* Checkbox Title */
+    let checkboxTitle = createDomElement('div','statusTitle','titleTextContent','Project Status')
+    checkboxContainer.appendChild(checkboxTitle)
+
+
+
+
+    middleContainer.appendChild(dateBox)
+
+
+
+    contentSide.appendChild(middleContainer)
     contentSide.appendChild(rightContainer)
     mainContainer.appendChild(contentSide)
 
@@ -299,9 +378,10 @@ let readProject = (project) =>{
 
     contentSide.appendChild(rightContainer)
     mainContainer.appendChild(contentSide)
+    mainForm.appendChild(mainContainer)
 
 
-    return mainContainer
+    return mainForm
 }
 
 export{

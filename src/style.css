@@ -386,6 +386,42 @@ button:focus {
   border: none;
   padding: 20px;
 }
+
+/*Project Selection Screen*/
+
+.projectChoosingContainer{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap:10px
+
+}
+
+.projectChoosingText{
+  font-size: calc(15px + 1vw);
+  font-weight: bold;
+  text-align: center;
+}
+
+.selectInput{
+  background-color: var(--winter);
+  padding: 10px;
+  border-radius: 10px;
+  font-size:  calc(10px + 1vw);
+  width: 300px;
+
+}
+
+
+/*Task selection screen*/
+.invisible{
+  display: none;
+}
+
+
+
 /*Right Side*/
 .contentRight{
   display: flex;
