@@ -1,6 +1,8 @@
 import {createDOMContainer,createDomElement} from './domCreators'
 import {Project,Task,mainDatabase} from './mainObjects'
 import {format, intervalToDuration,parseISO} from 'date-fns'
+import {createTaskStructure} from './taskModal.js'
+import {createModalStructure,closeModals} from './modal'
 
 
 
@@ -55,12 +57,6 @@ let addProjectContentStructure = (project) => {
     let dateCounterTextTop = createDomElement('div','','counterBoxTop','The project is due on:')
 
 
-    let interval = intervalToDuration({
-        start: new Date(),
-        end:  parseISO(project.dueDate)
-    })
-
-
     let dateCounterTextMiddle = createDomElement('div','','counterBoxBottom',`${intervalToDuration({start: new Date(), end: parseISO(project.dueDate)}).days}`)
     let dateCounterTextBottom = createDomElement('div','','counterBoxTop',`Day/s`)
 
@@ -91,26 +87,17 @@ let addProjectContentStructure = (project) => {
     /*Add task button*/
     let addTaskButton = createDomElement('button','addTask','addTask','+Add Task')
 
-    
+   
+    let projectStructure = createTaskStructure(project)
+    createModalStructure(projectStructure,'task','Add your task',addTaskButton)
 
     taskContent.appendChild(taskTableHeader);
     taskContent.appendChild(addTaskButton)
     leftSide.appendChild(taskContent)
     
-
-
-
-    
-    
-    
-    
     body.appendChild(leftSide)
     body.appendChild(rightSide)
    
-
-    
-
-
     mainContainer.appendChild(header)
     mainContainer.appendChild(body)
 

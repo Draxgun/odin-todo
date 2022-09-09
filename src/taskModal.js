@@ -382,5 +382,6 @@ let readProject = (project) =>{
 }
 
 export{
-    createTaskOption
+    createTaskOption,
+    createTaskStructure,
 }
