@@ -152,6 +152,8 @@ body{
 .modalHeaderTitle{
   font-size: 2rem;
 }
+
+
 /* The Close Button */
 .close {
   background: none;
@@ -166,6 +168,27 @@ body{
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Choosing Option Modal*/
+.optionContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px;
+  gap: 20px;
+}
+
+.modalTaskButton{
+  background-color: var(--winter);
+  font-size: calc(20px + 1vw);
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.modalTaskButton:hover{
+  filter: brightness(85%);
 }
 
 /* Project Modal */
@@ -264,14 +287,14 @@ body{
   align-items: center;
 }
 
-#addProjectButton{
+#addProjectInput{
   border: none;
   background-color: var(--winter);
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-#addProjectButton:hover{
+#addProjectInput:hover{
   text-decoration: underline;
 }
 
