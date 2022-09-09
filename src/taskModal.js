@@ -33,7 +33,6 @@ let createTaskOption = () => {
     return mainContainer
 }
 
-
 let createProjectStructure = () => {
         
     let mainForm = createDomElement('form','projectForm','projectFormContainer','')
@@ -220,7 +219,6 @@ let selectProjectStrucutre = () => {
     return mainContainer
 }
 
-
 let createTaskStructure = (project) => {
     
     let mainForm = createDomElement('form','taskForm','taskFormContainer','')
@@ -256,11 +254,7 @@ let createTaskStructure = (project) => {
     let notes  = createDomElement('input','noteTask','noteTask','')
     notes.placeholder = 'Some notes of the task...'
     
-
-
-    /*Checkbox Input*/
-    let checkboxInput = createDomElement('input','checkbox','checkboxInput','')
-    checkboxInput.type = 'checkbox'
+    contentSide.appendChild(notes)
 
     /*Creates the middle container */
     let middleContainer = createDOMContainer("",'middleContainer')
@@ -296,7 +290,9 @@ let createTaskStructure = (project) => {
     /*DatePicker*/
     let datePicker = createDomElement('input','datePicker','dateInput','')
     datePicker.type = 'date'
-    dateBox.appendChild(dateTitle)   
+    dateBox.appendChild(datePicker)   
+
+    middleContainer.appendChild(dateBox)
 
     /*Right side container*/
     let rightContainer = createDOMContainer("",'rightContainer')
@@ -308,12 +304,13 @@ let createTaskStructure = (project) => {
     let checkboxTitle = createDomElement('div','statusTitle','titleTextContent','Project Status')
     checkboxContainer.appendChild(checkboxTitle)
 
+    /*Checkbox Input*/
+    let checkboxInput = createDomElement('input','checkbox','checkboxInput','')
+    checkboxInput.type = 'checkbox'
+    checkboxContainer.appendChild(checkboxInput)
 
 
-
-    middleContainer.appendChild(dateBox)
-
-
+    rightContainer.appendChild(checkboxContainer)
 
     contentSide.appendChild(middleContainer)
     contentSide.appendChild(rightContainer)
