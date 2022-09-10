@@ -418,6 +418,15 @@ button:focus {
 }
 
 /*Task Modal Design*/
+.taskModalContainer{
+  margin-top: 10px;
+  background-color: var(--winter);
+  border-radius: 10px;
+}
+.taskContentContainer{
+  display: flex;
+}
+
 .topTaskModalContainer{
   display: flex;
   border: none;
@@ -428,7 +437,60 @@ button:focus {
   font-weight: bold;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  align-items: center;
 }
+
+#titleTaskInput{
+  display: flex;
+  border: none;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: inherit;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: var(--winter);
+  flex: 3;
+}
+
+#titleTaskInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--winter);
+  opacity: 1; /* Firefox */
+}
+
+.taskProjecTitle{
+  border: none;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: inherit;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: var(--winter);
+  flex: 1;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+#noteTask{
+  display: flex;
+  border: none;
+  background-color: var(--winter);
+  width: 90%;
+  font-size: 1rem;
+  padding: 10px;
+  overflow-wrap: break-word;
+  font-weight: bold;
+  resize: none;
+  height: 200px;
+  max-height: 50%;
+}
+
+
+
+
 
 /*Right Side*/
 .contentRight{

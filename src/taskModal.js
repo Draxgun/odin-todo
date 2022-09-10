@@ -251,7 +251,7 @@ let createTaskStructure = (project) => {
     let contentSide = createDOMContainer("",'taskContentContainer')
 
     /*notes*/
-    let notes  = createDomElement('input','noteTask','noteTask','')
+    let notes  = createDomElement('textarea','noteTask','noteTask','')
     notes.placeholder = 'Some notes of the task...'
     
     contentSide.appendChild(notes)
