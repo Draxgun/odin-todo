@@ -262,23 +262,53 @@ let createTaskStructure = (project) => {
 
     /*Project Priority*/
 
-    /*Slider Box*/
-    let sliderBox = createDOMContainer('','sliderContainer')
+    /*priority Box*/
+    let priorityBox = createDOMContainer('','priorityContainer')
 
-    /*Slider Title*/
-    let sliderTitle = createDomElement('div','sliderTitle','titleTextContent','Priority: ')
-    sliderBox.appendChild(sliderTitle)
+    /*priority Title*/
+    let priorityTitle = createDomElement('div','priorityTitle','titleTextContent','Priority ')
+    priorityBox.appendChild(priorityTitle)
 
-    /*Slider Input*/
-    let sliderInput = createDomElement('input','sliderPicker','sliderInput','')
-    sliderInput.type = 'range'
-    sliderInput.setAttribute('min','1')
-    sliderInput.setAttribute('max','5')
-    sliderInput.setAttribute('step','1')
+    /*priority Input*/
+    let priorityInputBox = createDOMContainer('','priorityInputBox')
 
-    sliderBox.appendChild(sliderInput)
+    let priority = {
+        Low : '#23F919',
+        Mid: '#F9F019',
+        High: '#F91919'
+    }
 
-    middleContainer.appendChild(sliderBox)
+    Object.keys(priority).forEach(level => {
+        
+        let currentLevel = priority[level]
+        /*Creates the container for each of the option*/
+        let priorityBox = createDOMContainer('','priorityOptionBox')
+
+        /*Creates the priority Boxes*/
+        let priorityIndicator = createDOMContainer(`${level}Input`,'priorityControl')
+
+        priorityIndicator.style.background = '#C2C2C2'
+
+        /*Creates the label for it*/
+        let priorityLabel = createDomElement('div',`${level}Label`,'priorityLabel',`${level}`)
+
+        priorityIndicator.addEventListener('click',()=>{
+            priorityIndicator.style.background = currentLevel
+        })
+
+        priorityLabel.addEventListener('click',()=>{
+            priorityIndicator.style.background = currentLevel
+        })
+
+        priorityBox.appendChild(priorityIndicator)
+        priorityBox.appendChild(priorityLabel)
+
+
+        priorityInputBox.appendChild(priorityBox)
+    });
+
+    priorityBox.appendChild(priorityInputBox)
+    middleContainer.appendChild(priorityBox)
 
     /*Date*/
     let dateBox = createDOMContainer('','dateContainer')

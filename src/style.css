@@ -432,7 +432,8 @@ button:focus {
   border: none;
   width: 100%;
   border-bottom: solid 3px black;
-  padding-bottom: 10px;
+  padding: 10px;
+  padding-bottom: 0px;
   margin-bottom: 10px;
   font-weight: bold;
   border-top-left-radius: 10px;
@@ -472,6 +473,8 @@ button:focus {
   flex: 1;
   text-align: center;
   overflow-wrap: break-word;
+  width: 20%;
+  max-width: 200px;
 }
 
 #noteTask{
@@ -488,7 +491,37 @@ button:focus {
   max-height: 50%;
 }
 
+/* MiddleContainer */
+.middleContainer{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
 
+.middleContainer > *{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.titleTextContent{
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Slider */
+.priorityControl{
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
 
 
 
