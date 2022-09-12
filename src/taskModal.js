@@ -286,14 +286,20 @@ let createTaskStructure = (project) => {
 
         /*Creates the priority Boxes*/
         let priorityIndicator = createDOMContainer(`${level}Input`,'priorityControl')
-
+        priorityIndicator.setAttribute('status','off');
         priorityIndicator.style.background = '#C2C2C2'
 
         /*Creates the label for it*/
         let priorityLabel = createDomElement('div',`${level}Label`,'priorityLabel',`${level}`)
 
         priorityIndicator.addEventListener('click',()=>{
-            priorityIndicator.style.background = currentLevel
+            if(priorityIndicator.getAttribute('status') == 'off'){
+                priorityIndicator.style.background = currentLevel
+                priorityIndicator.setAttribute('status','on');
+            }else{
+                priorityIndicator.setAttribute('status','off');
+                priorityIndicator.style.background = '#C2C2C2'
+            }
         })
 
         priorityLabel.addEventListener('click',()=>{
