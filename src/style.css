@@ -425,6 +425,7 @@ button:focus {
 }
 .taskContentContainer{
   display: flex;
+  gap: 10px;
 }
 
 .topTaskModalContainer{
@@ -517,12 +518,43 @@ button:focus {
 }
 
 /* Slider */
+.priorityInputBox{
+  display: flex;
+  gap: 10px;
+}
 .priorityControl{
-  width: 10px;
-  height: 10px;
-  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
 }
 
+.priorityOptionBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+/*Checkbox Container*/
+.checkboxContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+#statusTitle{
+  font-size: 1.10rem;
+}
+
+#checkboxInput {
+  width: 30px;
+  height: 30px;
+  background-color: var(--winter);
+  accent-color: var(--beige);
+}
 
 
 /*Right Side*/

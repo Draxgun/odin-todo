@@ -3,6 +3,7 @@ import {createDOMContainer,createDomElement} from './domCreators'
 import {Project,Task,mainDatabase} from './mainObjects'
 import {createModalStructure,closeModals} from './modal'
 import {saveInLocalStorage, getFromLocalStorage} from './localStorage'
+import {format, intervalToDuration,parseISO} from 'date-fns'
 
 
 let createTaskOption = () => {
@@ -276,7 +277,7 @@ let createTaskStructure = (project) => {
         Low : '#23F919',
         Mid: '#F9F019',
         High: '#F91919'
-    }
+    };
 
     Object.keys(priority).forEach(level => {
         
@@ -323,19 +324,30 @@ let createTaskStructure = (project) => {
         priorityInputBox.appendChild(priorityBox)
     });
 
-    priorityBox.appendChild(priorityInputBox)
-    middleContainer.appendChild(priorityBox)
+    priorityBox.appendChild(priorityInputBox);
+    middleContainer.appendChild(priorityBox);
 
     /*Date*/
-    let dateBox = createDOMContainer('','dateContainer')
+    let dateBox = createDOMContainer('','dateContainer');
 
     /* Date Title */
-    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a due date')
-    dateBox.appendChild(dateTitle)
+    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a due date');
+    dateBox.appendChild(dateTitle);
     
     /*DatePicker*/
-    let datePicker = createDomElement('input','datePicker','dateInput','')
-    datePicker.type = 'date'
+    let datePicker = createDomElement('input','datePicker','dateInput','');
+    datePicker.type = 'date';
+
+    console.log(project.dueDate)
+
+    let minDate = new Date().toISOString().split('T')[0];
+    let maxDate =  project.dueDate;
+
+    datePicker.setAttribute('min',minDate);
+    datePicker.setAttribute('max',maxDate);
+
+
+
     dateBox.appendChild(datePicker)   
 
     middleContainer.appendChild(dateBox)
@@ -386,7 +398,6 @@ let onlyOneOn = () => {
         });
     }
 }
-
 
 let readProject = (project) =>{
     let mainContainer = createDOMContainer(a,'projectContainer')
