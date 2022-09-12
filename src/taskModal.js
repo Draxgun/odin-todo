@@ -363,6 +363,7 @@ let createTaskStructure = (project) => {
         let currentTask = createTask()
         project.addTask(currentTask)
         console.log(project.tasks)
+        mainDatabase.updateProject(project)
     })
 
     bottomContainer.appendChild(addButton)

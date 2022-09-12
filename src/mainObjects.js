@@ -86,7 +86,7 @@ const mainDatabase = (() => {
     /*Delete in local*/
     let deleteProject = (project) => {
         let newData = data()
-        let newProject  = newData.map((item)=> {return project.title != item.title})
+        let newProject  = newData.filter((item)=> {return project.title != item.title})
         saveInLocalStorage('projectDatabase',newProject)
     }
 
