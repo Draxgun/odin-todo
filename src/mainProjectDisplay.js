@@ -97,7 +97,8 @@ let addProjectContentStructure = (project) => {
     
     body.appendChild(leftSide)
     body.appendChild(rightSide)
-   
+    
+
     mainContainer.appendChild(header)
     mainContainer.appendChild(body)
 

@@ -285,14 +285,15 @@ body{
   align-items: center;
 }
 
-#addProjectInput{
+.addProject{
   border: none;
   background-color: var(--winter);
   font-size: 1.5rem;
   font-weight: bold;
+  padding: 10px;
 }
 
-#addProjectInput:hover{
+.addProject:hover{
   text-decoration: underline;
 }
 
@@ -554,6 +555,12 @@ button:focus {
   height: 30px;
   background-color: var(--winter);
   accent-color: var(--beige);
+}
+
+.bottomTaskContainer{
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 

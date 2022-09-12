@@ -367,12 +367,18 @@ let createTaskStructure = (project) => {
     checkboxInput.type = 'checkbox'
     checkboxContainer.appendChild(checkboxInput)
 
+    let bottomContainer = createDOMContainer('','bottomTaskContainer')
+
+    let addButton = createDomElement('input','addTask','addProject','Add project');
+    addButton.type = 'submit'
+    bottomContainer.appendChild(addButton)
 
     rightContainer.appendChild(checkboxContainer)
 
     contentSide.appendChild(middleContainer)
     contentSide.appendChild(rightContainer)
     mainContainer.appendChild(contentSide)
+    mainContainer.appendChild(bottomContainer)
 
 
     return mainContainer
