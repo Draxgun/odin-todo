@@ -3,7 +3,7 @@ import {createDOMContainer,createDomElement} from './domCreators'
 import {Project,Task,mainDatabase} from './mainObjects'
 import {createModalStructure,closeModals} from './modal'
 import {saveInLocalStorage, getFromLocalStorage} from './localStorage'
-import {format, intervalToDuration,parseISO} from 'date-fns'
+import {add, format, intervalToDuration,parseISO} from 'date-fns'
 
 
 let createTaskOption = () => {
@@ -40,7 +40,6 @@ let createProjectStructure = () => {
 
     let mainContainer = createDOMContainer("",'projectContainer');
 
-    
     /* Gets the title input of the container*/
     let titleContainer = createDomElement('input','titleProject','projectInput','');
     titleContainer.placeholder = 'The projects title...';
@@ -67,14 +66,12 @@ let createProjectStructure = () => {
     let colorTitle = createDomElement('div','colorTitle','titleTextContent','Choose a color');
     colorBox.appendChild(colorTitle);
 
-
     let colorPicked = createDomElement('input','colorPicker','projectInput','');
     colorPicked.type = 'color'
     colorPicked.value = '#CB17E4'
     colorPicked.setAttribute('required','')
     
     colorBox.appendChild(colorPicked);
-
     
     /*ColorPicker*/
     let colorPickerBox =  createDomElement('div','colorBox','colorBox','');
@@ -111,15 +108,12 @@ let createProjectStructure = () => {
 
     colorBox.appendChild(colorPickerBox)
 
-
-
     /*Date*/
     let dateBox = createDOMContainer('','dateContainer')
 
     /* Color Title */
     let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a due date')
     dateBox.appendChild(dateTitle)
-    
     
     /*ColorPicker*/
     let datePicker = createDomElement('input','datePicker','projectInput','');
@@ -140,11 +134,9 @@ let createProjectStructure = () => {
     let addButton = createDomElement('input','addProject','addProject','Add project');
     addButton.type = 'submit'
 
-    
     mainForm.addEventListener('submit',()=>{
         let newProject = createProject();
         mainDatabase.addProject(newProject);
-        
     })
 
     addProjectContainer.appendChild(addButton)
@@ -158,11 +150,13 @@ let createProjectStructure = () => {
 let createProject = () => {
    let projectInput = document.querySelectorAll('.projectInput')
 
+    let startingTasks = []
+
    let project = new Project(
     projectInput[0].value,
     projectInput[1].value,
     projectInput[3].value,
-    [],
+    startingTasks,
     projectInput[2].value
    )
 
@@ -190,13 +184,9 @@ let selectProjectStrucutre = () => {
         projectInput.options.add(new Option(general[i], general[i]));
     }
 
-
-
     
     projectInput.addEventListener('change',() =>{
         
-
-
         let invisibleButton = createDomElement('button','','invisible','a');
         mainContainer.appendChild(invisibleButton)
 
@@ -233,7 +223,7 @@ let createTaskStructure = (project) => {
 
 
     /* Gets the title input of the container*/
-    let titleContainer = createDomElement('input','titleTask','modalInput','')
+    let titleContainer = createDomElement('input','titleTask','taskInput','')
     titleContainer.placeholder = 'The tasks title...'
     titleContainer.setAttribute('required','')
 
@@ -252,7 +242,7 @@ let createTaskStructure = (project) => {
     let contentSide = createDOMContainer("",'taskContentContainer')
 
     /*notes*/
-    let notes  = createDomElement('textarea','noteTask','noteTask','')
+    let notes  = createDomElement('textarea','noteTask','taskInput','')
     notes.placeholder = 'Some notes of the task...'
     
     contentSide.appendChild(notes)
@@ -335,18 +325,14 @@ let createTaskStructure = (project) => {
     dateBox.appendChild(dateTitle);
     
     /*DatePicker*/
-    let datePicker = createDomElement('input','datePicker','dateInput','');
+    let datePicker = createDomElement('input','datePicker','taskInput','');
     datePicker.type = 'date';
-
-    console.log(project.dueDate)
 
     let minDate = new Date().toISOString().split('T')[0];
     let maxDate =  project.dueDate;
 
     datePicker.setAttribute('min',minDate);
     datePicker.setAttribute('max',maxDate);
-
-
 
     dateBox.appendChild(datePicker)   
 
@@ -363,14 +349,22 @@ let createTaskStructure = (project) => {
     checkboxContainer.appendChild(checkboxTitle)
 
     /*Checkbox Input*/
-    let checkboxInput = createDomElement('input','checkbox','checkboxInput','')
+    let checkboxInput = createDomElement('input','checkboxTask','taskInput','')
     checkboxInput.type = 'checkbox'
     checkboxContainer.appendChild(checkboxInput)
 
     let bottomContainer = createDOMContainer('','bottomTaskContainer')
 
-    let addButton = createDomElement('input','addTask','addProject','Add project');
-    addButton.type = 'submit'
+    let addButton = createDomElement('button','addTask','addProject','Add project');
+
+    addButton.type = 'button' 
+
+    addButton.addEventListener('click',()=>{
+        let currentTask = createTask()
+        project.addTask(currentTask)
+        console.log(project.tasks)
+    })
+
     bottomContainer.appendChild(addButton)
 
     rightContainer.appendChild(checkboxContainer)
@@ -380,8 +374,9 @@ let createTaskStructure = (project) => {
     mainContainer.appendChild(contentSide)
     mainContainer.appendChild(bottomContainer)
 
+    mainForm.appendChild(mainContainer)
 
-    return mainContainer
+    return mainForm
 }
 
 let onlyOneOn = () => {
@@ -403,6 +398,40 @@ let onlyOneOn = () => {
             input.style.background = '#C2C2C2'
         });
     }
+}
+
+let createTask = () => {
+    let taskInput = document.querySelectorAll('.taskInput')
+
+    let priorityInput = Array.from(document.getElementsByClassName('priorityControl'))
+    let statusArray = priorityInput.map((option) =>{
+        return option.getAttribute('status')
+    })
+
+    let priority
+
+    let indexOfPriority = statusArray.indexOf('on')
+
+    if (indexOfPriority == 1){
+        priority = 'Low'
+    } else if (indexOfPriority == 2){
+        priority = 'Mid'
+    }else{
+        priority = 'High'
+    }
+
+    let currentProjectName = document.getElementById('taskProjectTitle').textContent
+
+    let currentTask = new Task(
+        taskInput[0].value,
+        taskInput[2].value,
+        priority,
+        taskInput[1].value,
+        taskInput[3].checked,
+        currentProjectName,
+    )
+
+    return currentTask
 }
 
 let readProject = (project) =>{

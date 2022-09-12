@@ -12,33 +12,33 @@ class Project {
     }
     
     /*Deltes a task from a project */
-    deleteTask = (task) => {
-        let indexDel = this.tasks.indexOf(task)
-        task.splice(indexDel,1)
+    addTask = (item) =>{
+        let currentTasks = this.tasks
+        currentTasks.push(item)
     }
 
-    addTask = (task) => {
-        this.tasks.push(task)
+    getTest = () => {
+        console.log(this.title)
     }
-
 }
 
-class Task extends Project {
+class Task{
 
-    constructor(title,dueDate,priority,notes,project,checklist) {
-     this.title = title
+    constructor(tasktitle,dueDate,priority,notes,checklist,projectTitle) {
+     this.tasktitle = tasktitle
      this.dueDate = dueDate
      this.priority = priority
      this.notes = notes
-     super(project)
      this.checklist = checklist
+     this.projectTitle = projectTitle
+     
     }
     
     changeStaus = () => {
-        if( this.checklist === true){
-            this.checklist = true
+        if( this.checklist != 'true'){
+            this.checklist = 'true'
         }else{
-            this.checklist = false
+            this.checklist = 'false'
         }
         
     }
@@ -49,7 +49,7 @@ class Task extends Project {
 const mainDatabase = (() => {
 
     /*gets the info of the main database*/
-    let data  = () => getFromLocalStorage('projectDatabase');
+    let data  = () => {return getFromLocalStorage('projectDatabase')};
     
     /*Adds a project to the main database*/
     let addProject = (project) => {
@@ -58,6 +58,17 @@ const mainDatabase = (() => {
         saveInLocalStorage('projectDatabase',newData)
     }
 
+    let projectify = (project) =>{
+        let newProject = new Project(
+            project.title,
+            project.description,
+            project.dueDate,
+            project.tasks,
+            project.color
+        )
+        return  newProject
+    }
+ 
     /*Gets the projectTitles*/
     let getProjectsTitles = () => {
         let newData = data()
@@ -69,8 +80,23 @@ const mainDatabase = (() => {
     const getProjectByTitle = (title) =>{
         let newData = data();
         newData = newData.find(item => item.title === title)
-        return newData
+        return projectify(newData)
     }
+
+    /*Delete in local*/
+    let deleteProject = (project) => {
+        let newData = data()
+        let newProject  = newData.map((item)=> {return project.title != item.title})
+        saveInLocalStorage('projectDatabase',newProject)
+    }
+
+    /*Updates the project */
+    let updateProject = (project) => {
+        deleteProject(project)
+        addProject(project)
+    }
+
+
 
 
     return {
@@ -78,6 +104,8 @@ const mainDatabase = (() => {
       data,
       getProjectsTitles,
       getProjectByTitle,
+      deleteProject,
+      updateProject
     };
   })();
 
