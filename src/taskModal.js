@@ -292,7 +292,10 @@ let createTaskStructure = (project) => {
         /*Creates the label for it*/
         let priorityLabel = createDomElement('div',`${level}Label`,'priorityLabel',`${level}`)
 
+
+
         priorityIndicator.addEventListener('click',()=>{
+            onlyOneOn()
             if(priorityIndicator.getAttribute('status') == 'off'){
                 priorityIndicator.style.background = currentLevel
                 priorityIndicator.setAttribute('status','on');
@@ -303,7 +306,14 @@ let createTaskStructure = (project) => {
         })
 
         priorityLabel.addEventListener('click',()=>{
-            priorityIndicator.style.background = currentLevel
+            onlyOneOn()
+            if(priorityIndicator.getAttribute('status') == 'off'){
+                priorityIndicator.style.background = currentLevel
+                priorityIndicator.setAttribute('status','on');
+            }else{
+                priorityIndicator.setAttribute('status','off');
+                priorityIndicator.style.background = '#C2C2C2'
+            }
         })
 
         priorityBox.appendChild(priorityIndicator)
@@ -355,6 +365,28 @@ let createTaskStructure = (project) => {
 
     return mainContainer
 }
+
+let onlyOneOn = () => {
+    let priorityInput = Array.from(document.getElementsByClassName('priorityControl'))
+    let statusArray = priorityInput.map((option) =>{
+        return option.getAttribute('status')
+    })
+
+    let counter = 0;
+    for(let statuses of statusArray){
+        if (statuses == 'on'){
+            counter++
+        }
+    }
+
+    if (counter == 1){
+        priorityInput.forEach(input => {
+            input.setAttribute('status','off');
+            input.style.background = '#C2C2C2'
+        });
+    }
+}
+
 
 let readProject = (project) =>{
     let mainContainer = createDOMContainer(a,'projectContainer')
@@ -416,6 +448,8 @@ let readProject = (project) =>{
 
     return mainForm
 }
+
+
 
 export{
     createTaskOption,
