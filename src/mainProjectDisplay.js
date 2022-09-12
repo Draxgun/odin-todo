@@ -84,6 +84,31 @@ let addProjectContentStructure = (project) => {
     taskTableHeader.appendChild(priorityTable);
     taskTableHeader.appendChild(checkTable);
 
+
+    /*Task table content*/
+    let projectTasks = mainDatabase.getProjectTasks(project.title)
+    projectTasks.forEach(task => {
+        
+    
+
+        let dateValue = createDomElement('div',`${task.dueDate}`,`taskTableBodyElement`,task.dueDate)
+
+        let nameValue = createDomElement('div',`${task.tasktitle}`,`taskTableBodyElement`,task.tasktitle)
+
+        let priorityValue = createDomElement('div',`${task.priority}`,`taskTableBodyElement`,task.priority)
+
+        let statusValue = createDomElement('div',`${task.checklist.toString()}`,`taskTableBodyElement`,task.checklist.toString())
+
+
+        taskTableHeader.appendChild(dateValue)
+        taskTableHeader.appendChild(nameValue)
+        taskTableHeader.appendChild(priorityValue)
+        taskTableHeader.appendChild(statusValue)
+
+    });
+
+    
+
     /*Add task button*/
     let addTaskButton = createDomElement('button','addTask','addTask','+Add Task')
 

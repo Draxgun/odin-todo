@@ -77,10 +77,15 @@ const mainDatabase = (() => {
     }
 
     /*Get object by project name*/
-    const getProjectByTitle = (title) =>{
+    let getProjectByTitle = (title) =>{
         let newData = data();
         newData = newData.find(item => item.title === title)
         return projectify(newData)
+    }
+
+    /*Get tasks of project*/
+    let getProjectTasks = (project) => {
+        return getProjectByTitle(project).tasks
     }
 
     /*Delete in local*/
@@ -105,7 +110,8 @@ const mainDatabase = (() => {
       getProjectsTitles,
       getProjectByTitle,
       deleteProject,
-      updateProject
+      updateProject,
+      getProjectTasks,
     };
   })();
 

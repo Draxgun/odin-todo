@@ -365,6 +365,8 @@ button:focus {
   border-bottom: solid 2px gray;
 }
 
+
+
 .taskTableHeaderElement{
   display: flex;
   width: 100%;
@@ -375,6 +377,18 @@ button:focus {
   color: var(--winter);
   font-weight: bold;
   
+}
+.taskTableBodyElement{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  background-color: var(--winter);
+  border: solid 1px rgb(146, 144, 144);
+  align-content: center;
+  padding: 10px;
+  font-size: calc(5px + 1vw);
+  color: black;
 }
 
 #addTaskButton{
