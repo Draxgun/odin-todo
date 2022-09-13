@@ -365,6 +365,23 @@ button:focus {
   border-bottom: solid 2px gray;
 }
 
+.taskTableBody{
+  display: grid;
+  grid-template-columns: 1.25fr 3fr 1.25fr 1.25fr;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  height: fit-content;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: solid 2px gray;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.taskTableBody::-webkit-scrollbar{
+  display: none;
+}
 
 
 .taskTableHeaderElement{
