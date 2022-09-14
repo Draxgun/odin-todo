@@ -17,6 +17,23 @@ class Project {
         currentTasks.push(item)
     }
 
+    deleteTask = (task) => {
+        let currentTasks = this.tasks
+        let indexOfTask = currentTasks.findIndex(item =>
+            item.tasktitle == task.tasktitle &&
+            item.dueDate == task.dueDate &&
+            item.priority == task.priority &&
+            item.notes == task.notes &&
+            item.checklist == task.checklist &&
+            item.projectTitle == task.projectTitle
+        )
+
+        console.log(currentTasks)
+        console.log(indexOfTask)
+        this.tasks.splice(indexOfTask,1)
+        console.log(this.tasks)
+    }
+
     getTest = () => {
         console.log(this.title)
     }
@@ -93,8 +110,6 @@ const mainDatabase = (() => {
         newData = newData.find(item => item.title === title)
         return projectify(newData)
     }
-
-
 
     /*Get tasks of project*/
     let getProjectTasks = (project) => {

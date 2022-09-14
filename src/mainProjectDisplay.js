@@ -103,6 +103,8 @@ let addProjectContentStructure = (project) => {
         
         deleteTask.addEventListener('click',()=>{
             taskTableBody.removeChild(taskTableBodyRow)
+            project.deleteTask(task)
+            mainDatabase.updateProject(project)
 
         }) 
 
