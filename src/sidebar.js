@@ -6,10 +6,7 @@ import {addProjectContentStructure} from './mainProjectDisplay'
  
 /* Creates the side bar*/
 let loadSidebar= (content) => {
-    let sidebarContainer = createSidebarContainer(content)
-
-
-    
+    let sidebarContainer = createSidebarContainer(content) 
     createSidebar(sidebarContainer)
     addButtonListeners()
 }
@@ -42,6 +39,22 @@ let addToday = () => {
     })
 }
 
+let addMonth = () => {
+    let monthButton = document.getElementById('monthButton')
+
+    monthButton.addEventListener('click',()=>{
+        mainDatabase.getMonthTasks()
+    })
+}
+
+let addHome = () => {
+    let homeButton = document.getElementById('homeButton')
+
+    homeButton.addEventListener('click',()=>{
+        console.log(mainDatabase.getTasks())
+    })
+}
+
 let createSidebarItem = (name,container) =>{
     
     let button = document.createElement('button')
@@ -58,6 +71,8 @@ let addButtonListeners = () => {
     addTaskButton();
     addProjectButton();
     addToday();
+    addMonth();
+    addHome();
 }
 
 let addTaskButton = () => {
@@ -93,9 +108,9 @@ let loadProjectCollapsible = () => {
         let currentProject = createDomElement('button',`${project}`,'collapsible',`${project}`)
         currentProject.innerHTML = ''
         currentProject.innerHTML = project
-
+        
         projectsContainer.appendChild(currentProject)
-
+        console.log(mainDatabase.getProjectByTitle(project))
         currentProject.addEventListener('click',()=>{
             addProjectContentStructure(mainDatabase.getProjectByTitle(project)) 
         })

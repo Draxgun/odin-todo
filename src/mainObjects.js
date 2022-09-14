@@ -28,10 +28,7 @@ class Project {
             item.projectTitle == task.projectTitle
         )
 
-        console.log(currentTasks)
-        console.log(indexOfTask)
         this.tasks.splice(indexOfTask,1)
-        console.log(this.tasks)
     }
 
     getTest = () => {
@@ -76,6 +73,7 @@ const mainDatabase = (() => {
     }
 
     let projectify = (project) =>{
+
         let newProject = new Project(
             project.title,
             project.description,
@@ -149,6 +147,20 @@ const mainDatabase = (() => {
 
         console.log(todaysTasks)
 
+        return todaysTasks
+    }
+
+    let getMonthTasks = () => {
+        let tasks = getTasks()
+        let today = new Date().toISOString().split('T')[0];
+        let dateArray = today.split('-')
+        let currentMonth = dateArray[1]
+
+        let monthTasks = tasks.filter(task => {return task.dueDate.split('-')[1] == currentMonth})
+
+        console.log(monthTasks)
+
+        return monthTasks
     }
 
 
@@ -163,6 +175,7 @@ const mainDatabase = (() => {
       updateProject,
       getProjectTasks,
       getTodaysTasks,
+      getMonthTasks,
       getTasks,
     };
   })();

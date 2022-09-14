@@ -107,7 +107,7 @@ let addProjectContentStructure = (project) => {
 
 
     /*Task table content*/
-    let projectTasks = mainDatabase.getProjectTasks(project.title)
+    let projectTasks = mainDatabase.getProjectTasks(project)
     let taskTableBody = createDOMContainer('','taskTableBody')
 
     projectTasks.forEach(task => {
@@ -134,7 +134,7 @@ let addProjectContentStructure = (project) => {
 
         let statusValue = createDomElement('div',`${task.checklist.toString()}`,`taskTableBodyElement`,task.checklist.toString())
 
-        createModalStructure(readTask(task),'modal','Information of the task',dateValue)
+        
         createModalStructure(readTask(task),'modal','Information of the task',nameValue)
         createModalStructure(readTask(task),'modal','Information of the task',priorityValue)
 
