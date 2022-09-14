@@ -69,6 +69,21 @@ let addProjectContentStructure = (project) => {
     let deleteTaskButton = createDomElement('button','deleteTask','deleteTaskButton','Delete')
     deleteTaskContainer.appendChild(deleteTaskButton)
 
+    deleteTaskButton.addEventListener('click',()=>{
+        
+        let deleteButtons = Array.from(document.getElementsByClassName('deleteTaskBody'))
+        deleteButtons.forEach(deleteButton => {
+            if (deleteButton.style.display === 'none'){
+                deleteButton.style.display = 'flex'
+            }else{
+                deleteButton.style.display = 'none'
+            }
+       });
+
+
+
+    })
+
     rightSide.appendChild(deleteTaskButton)
     /*Left Side*/
     
@@ -98,9 +113,12 @@ let addProjectContentStructure = (project) => {
     projectTasks.forEach(task => {
 
         let taskTableBodyRow = createDOMContainer(`taskTableBodyRow`,'taskTableBodyRow')
+        taskTableBodyRow.setAttribute('collapsed','true')
 
         let deleteTask = createDomElement('button',`deleteTaskBody`,'deleteTaskBody','Del')
         
+        deleteTask.style.display = 'none'
+
         deleteTask.addEventListener('click',()=>{
             taskTableBody.removeChild(taskTableBodyRow)
             project.deleteTask(task)
