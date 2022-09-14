@@ -1,7 +1,7 @@
 import {createDOMContainer,createDomElement} from './domCreators'
 import {Project,Task,mainDatabase} from './mainObjects'
 import {format, intervalToDuration,parseISO} from 'date-fns'
-import {createTaskStructure} from './taskModal.js'
+import {createTaskStructure,readTask} from './taskModal.js'
 import {createModalStructure,closeModals} from './modal'
 
 
@@ -64,6 +64,12 @@ let addProjectContentStructure = (project) => {
     dateCounterBox.appendChild(dateCounterTextMiddle)
     dateCounterBox.appendChild(dateCounterTextBottom)
     rightSide.appendChild(dateCounterBox)
+
+    let deleteTaskContainer = createDOMContainer('','deleteTaskContainer')
+    let deleteTaskButton = createDomElement('button','deleteTask','deleteTaskButton','Delete')
+    deleteTaskContainer.appendChild(deleteTaskButton)
+
+    rightSide.appendChild(deleteTaskButton)
     /*Left Side*/
     
     /*Task Section*/
@@ -88,9 +94,17 @@ let addProjectContentStructure = (project) => {
     /*Task table content*/
     let projectTasks = mainDatabase.getProjectTasks(project.title)
     let taskTableBody = createDOMContainer('','taskTableBody')
+
     projectTasks.forEach(task => {
+
+        let taskTableBodyRow = createDOMContainer(`taskTableBodyRow`,'taskTableBodyRow')
+
+        let deleteTask = createDomElement('button',`deleteTaskBody`,'deleteTaskBody','Del')
         
-    
+        deleteTask.addEventListener('click',()=>{
+            taskTableBody.removeChild(taskTableBodyRow)
+
+        }) 
 
         let dateValue = createDomElement('div',`${task.dueDate}`,`taskTableBodyElement`,task.dueDate)
 
@@ -100,11 +114,17 @@ let addProjectContentStructure = (project) => {
 
         let statusValue = createDomElement('div',`${task.checklist.toString()}`,`taskTableBodyElement`,task.checklist.toString())
 
+        createModalStructure(readTask(task),'modal','Information of the task',dateValue)
+        createModalStructure(readTask(task),'modal','Information of the task',nameValue)
+        createModalStructure(readTask(task),'modal','Information of the task',priorityValue)
 
-        taskTableBody.appendChild(dateValue)
-        taskTableBody.appendChild(nameValue)
-        taskTableBody.appendChild(priorityValue)
-        taskTableBody.appendChild(statusValue)
+        taskTableBodyRow.appendChild(deleteTask)
+        taskTableBodyRow.appendChild(dateValue)
+        taskTableBodyRow.appendChild(nameValue)
+        taskTableBodyRow.appendChild(priorityValue)
+        taskTableBodyRow.appendChild(statusValue)
+
+        taskTableBody.appendChild(taskTableBodyRow)
 
     });
 

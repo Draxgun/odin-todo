@@ -366,8 +366,6 @@ button:focus {
 }
 
 .taskTableBody{
-  display: grid;
-  grid-template-columns: 1.25fr 3fr 1.25fr 1.25fr;
   width: 100%;
   justify-items: center;
   align-items: center;
@@ -377,6 +375,15 @@ button:focus {
   border-bottom: solid 2px gray;
   overflow-y: auto;
   max-height: 500px;
+}
+
+.taskTableBodyRow{
+  display: grid;
+  grid-template-columns: 1.25fr 3fr 1.25fr 1.25fr;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  height: fit-content;
 }
 
 .taskTableBody::-webkit-scrollbar{
@@ -403,8 +410,8 @@ button:focus {
   background-color: var(--winter);
   border: solid 1px rgb(146, 144, 144);
   align-content: center;
-  padding: 10px;
-  font-size: calc(5px + 1vw);
+  padding: 5px;
+  font-size: calc(2px + 1vw);
   color: black;
 }
 

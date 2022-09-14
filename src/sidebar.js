@@ -84,6 +84,9 @@ let loadProjectCollapsible = () => {
 
     projectTitles.forEach(project => {
         let currentProject = createDomElement('button',`${project}`,'collapsible',`${project}`)
+        currentProject.innerHTML = ''
+        currentProject.innerHTML = project
+
         projectsContainer.appendChild(currentProject)
 
         currentProject.addEventListener('click',()=>{

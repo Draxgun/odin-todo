@@ -379,6 +379,164 @@ let createTaskStructure = (project) => {
     return mainForm
 }
 
+let readTask = (task) => {
+    let mainForm = createDomElement('form','taskForm','taskFormContainer','')
+
+    let mainContainer = createDOMContainer("",'taskModalContainer')
+
+    /* Creates Top part Container */
+    let topContainer = createDOMContainer('','topTaskModalContainer')
+    topContainer.style.background = mainDatabase.getProjectByTitle(task.projectTitle).color
+
+
+    /* Gets the title input of the container*/
+    let titleContainer = createDomElement('div','titleTask','taskInput',task.tasktitle)
+
+    topContainer.appendChild(titleContainer)
+
+
+    /*Project Name*/
+    let projectName = createDomElement('div','taskProjectTitle','taskProjecTitle',mainDatabase.getProjectByTitle(task.projectTitle).title
+    )
+    topContainer.appendChild(projectName)
+
+
+    /* Appends it to the top container */
+    mainContainer.appendChild(topContainer)
+
+    /*Content description*/
+    let contentSide = createDOMContainer("",'taskContentContainer')
+
+    /*notes*/
+    let notes  = createDomElement('div','noteTask','taskInput',task.notes)
+    contentSide.appendChild(notes)
+
+    /*Creates the middle container */
+    let middleContainer = createDOMContainer("",'middleContainer')
+
+
+    /*Project Priority*/
+
+    /*priority Box*/
+    let priorityBox = createDOMContainer('','priorityContainer')
+
+    /*priority Title*/
+    let priorityTitle = createDomElement('div','priorityTitle','titleTextContent','Priority ')
+    priorityBox.appendChild(priorityTitle)
+
+    /*priority Input*/
+    let priorityInputBox = createDOMContainer('','priorityInputBox')
+
+    let priority = {
+        Low : '#23F919',
+        Mid: '#F9F019',
+        High: '#F91919'
+    };
+
+    Object.keys(priority).forEach(level => {
+        
+        let currentLevel = priority[level]
+        /*Creates the container for each of the option*/
+        let priorityBox = createDOMContainer('','priorityOptionBox')
+
+        /*Creates the priority Boxes*/
+        let priorityIndicator = createDOMContainer(`${level}Input`,'priorityControl')
+        priorityIndicator.setAttribute('status','off');
+        priorityIndicator.style.background = '#C2C2C2'
+
+        /*Creates the label for it*/
+        let priorityLabel = createDomElement('div',`${level}Label`,'priorityLabel',`${level}`)
+
+
+
+        priorityIndicator.addEventListener('click',()=>{
+            onlyOneOn()
+            if(priorityIndicator.getAttribute('status') == 'off'){
+                priorityIndicator.style.background = currentLevel
+                priorityIndicator.setAttribute('status','on');
+            }else{
+                priorityIndicator.setAttribute('status','off');
+                priorityIndicator.style.background = '#C2C2C2'
+            }
+        })
+
+        priorityLabel.addEventListener('click',()=>{
+            onlyOneOn()
+            if(priorityIndicator.getAttribute('status') == 'off'){
+                priorityIndicator.style.background = currentLevel
+                priorityIndicator.setAttribute('status','on');
+            }else{
+                priorityIndicator.setAttribute('status','off');
+                priorityIndicator.style.background = '#C2C2C2'
+            }
+        })
+
+        priorityBox.appendChild(priorityIndicator)
+        priorityBox.appendChild(priorityLabel)
+
+
+        priorityInputBox.appendChild(priorityBox)
+    });
+
+
+
+    priorityBox.appendChild(priorityInputBox);
+    middleContainer.appendChild(priorityBox);
+
+    /*Date*/
+    let dateBox = createDOMContainer('','dateContainer');
+
+    /* Date Title */
+    let dateTitle = createDomElement('div','dateTitle','titleTextContent','Choose a due date');
+    dateBox.appendChild(dateTitle);
+    
+    /*DatePicker*/
+    let datePicker = createDomElement('input','datePicker','taskInput','');
+    datePicker.type = 'date';
+
+    let minDate = new Date().toISOString().split('T')[0];
+    let maxDate =  mainDatabase.getProjectByTitle(task.projectTitle).dueDate;
+
+    datePicker.setAttribute('min',minDate);
+    datePicker.setAttribute('max',maxDate);
+    datePicker.setAttribute('value',task.dueDate);
+
+    dateBox.appendChild(datePicker)   
+
+    middleContainer.appendChild(dateBox)
+
+    /*Right side container*/
+    let rightContainer = createDOMContainer("",'rightContainer')
+
+    /*Checkbox Container*/
+    let checkboxContainer = createDOMContainer('','checkboxContainer')
+
+    /* Checkbox Title */
+    let checkboxTitle = createDomElement('div','statusTitle','titleTextContent','Project Status')
+    checkboxContainer.appendChild(checkboxTitle)
+
+    /*Checkbox Input*/
+    let checkboxInput = createDomElement('input','checkboxTask','taskInput','')
+    checkboxInput.type = 'checkbox'
+    checkboxContainer.appendChild(checkboxInput)
+
+    if(task.checklist == true){
+        checkboxInput.checked = true;
+    }else{
+        checkboxInput.checked = false;
+    }
+
+    rightContainer.appendChild(checkboxContainer)
+
+    contentSide.appendChild(middleContainer)
+    contentSide.appendChild(rightContainer)
+    mainContainer.appendChild(contentSide)
+
+    mainForm.appendChild(mainContainer)
+
+    return mainForm
+}
+
 let onlyOneOn = () => {
     let priorityInput = Array.from(document.getElementsByClassName('priorityControl'))
     let statusArray = priorityInput.map((option) =>{
@@ -500,4 +658,5 @@ let readProject = (project) =>{
 export{
     createTaskOption,
     createTaskStructure,
+    readTask,
 }

@@ -68,7 +68,18 @@ const mainDatabase = (() => {
         )
         return  newProject
     }
- 
+    
+    let taskify = (task) => {
+        let newTask = new Task(
+            task.tasktitle,
+            task.dueDate,
+            task.priority,
+            task.notes,
+            task.checklist,
+            task.projectTitle
+        )
+        return  newTask
+    }
     /*Gets the projectTitles*/
     let getProjectsTitles = () => {
         let newData = data()
@@ -82,6 +93,8 @@ const mainDatabase = (() => {
         newData = newData.find(item => item.title === title)
         return projectify(newData)
     }
+
+
 
     /*Get tasks of project*/
     let getProjectTasks = (project) => {
