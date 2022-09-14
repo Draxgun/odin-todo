@@ -129,6 +129,28 @@ const mainDatabase = (() => {
         addProject(project)
     }
 
+    let getTasks = () => {
+        let newData = data();
+        let allTasks = []
+        newData.forEach(project => {
+            allTasks.push(project.tasks)
+        });
+
+        allTasks = allTasks.flat()
+        return allTasks
+    }
+
+    let getTodaysTasks = () => {
+        let tasks = getTasks()
+        let today = new Date().toISOString().split('T')[0];
+        console.log(today)
+
+        let todaysTasks = tasks.filter(task => {return task.dueDate == today})
+
+        console.log(todaysTasks)
+
+    }
+
 
 
 
@@ -140,6 +162,8 @@ const mainDatabase = (() => {
       deleteProject,
       updateProject,
       getProjectTasks,
+      getTodaysTasks,
+      getTasks,
     };
   })();
 

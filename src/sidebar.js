@@ -34,6 +34,14 @@ let createSidebar = (container) => {
 
 }
 
+let addToday = () => {
+    let todayButton = document.getElementById('todayButton')
+
+    todayButton.addEventListener('click',()=>{
+        mainDatabase.getTodaysTasks()
+    })
+}
+
 let createSidebarItem = (name,container) =>{
     
     let button = document.createElement('button')
@@ -46,11 +54,10 @@ let createSidebarItem = (name,container) =>{
 }
 
 
-
-
 let addButtonListeners = () => {
     addTaskButton();
     addProjectButton();
+    addToday();
 }
 
 let addTaskButton = () => {
