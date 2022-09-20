@@ -153,7 +153,7 @@ let createProject = () => {
     let startingTasks = []
 
    let project = new Project(
-    projectInput[0].value,
+    projectInput[0].value.toLowerCase(),
     projectInput[1].value,
     projectInput[3].value,
     startingTasks,
