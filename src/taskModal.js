@@ -355,9 +355,16 @@ let createTaskStructure = (project) => {
 
     let bottomContainer = createDOMContainer('','bottomTaskContainer')
 
-    let addButton = createDomElement('input','addTask','addProject','Add project');
+    let addButton = createDomElement('button','addTask','addProject','Add project');
 
-    addButton.type = 'submit' 
+    addButton.type = 'button' 
+
+    addButton.addEventListener('click',()=>{
+        let currentTask = createTask()
+        project.addTask(currentTask)
+        mainDatabase.updateProject(project)
+        console.log('hola')
+    })
 
     mainForm.addEventListener('submit',()=>{
         let currentTask = createTask()
@@ -380,13 +387,13 @@ let createTaskStructure = (project) => {
 }
 
 let readTask = (task) => {
+
     let mainForm = createDomElement('form','taskForm','taskFormContainer','')
 
     let mainContainer = createDOMContainer("",'taskModalContainer')
 
     /* Creates Top part Container */
     let topContainer = createDOMContainer('','topTaskModalContainer')
-    topContainer.style.background = mainDatabase.getProjectByTitle(task.projectTitle).color
 
 
     /* Gets the title input of the container*/
@@ -394,10 +401,12 @@ let readTask = (task) => {
 
     topContainer.appendChild(titleContainer)
 
+   
 
     /*Project Name*/
-    let projectName = createDomElement('div','taskProjectTitle','taskProjecTitle',mainDatabase.getProjectByTitle(task.projectTitle).title
+    let projectName = createDomElement('div','taskProjectTitle','taskProjecTitle',mainDatabase.getProjectByTitle(task.projectTitle.toLowerCase()).title
     )
+    console.log('test5')
     topContainer.appendChild(projectName)
 
 
@@ -432,6 +441,7 @@ let readTask = (task) => {
         Mid: '#F9F019',
         High: '#F91919'
     };
+
 
     Object.keys(priority).forEach(level => {
         
@@ -495,7 +505,7 @@ let readTask = (task) => {
     datePicker.type = 'date';
 
     let minDate = new Date().toISOString().split('T')[0];
-    let maxDate =  mainDatabase.getProjectByTitle(task.projectTitle).dueDate;
+    let maxDate =  mainDatabase.getProjectByTitle(task.projectTitle.toLowerCase()).dueDate;
 
     datePicker.setAttribute('min',minDate);
     datePicker.setAttribute('max',maxDate);

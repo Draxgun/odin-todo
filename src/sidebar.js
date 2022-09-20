@@ -110,9 +110,8 @@ let loadProjectCollapsible = () => {
         currentProject.innerHTML = project
         
         projectsContainer.appendChild(currentProject)
-        console.log(mainDatabase.getProjectByTitle(project))
         currentProject.addEventListener('click',()=>{
-            addProjectContentStructure(mainDatabase.getProjectByTitle(project)) 
+            addProjectContentStructure(mainDatabase.getProjectByTitle(project))
         })
 
     });
