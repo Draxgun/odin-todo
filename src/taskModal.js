@@ -355,16 +355,9 @@ let createTaskStructure = (project) => {
 
     let bottomContainer = createDOMContainer('','bottomTaskContainer')
 
-    let addButton = createDomElement('button','addTask','addProject','Add project');
+    let addButton = createDomElement('input','addTask','addProject','Add project');
 
-    addButton.type = 'button' 
-
-    addButton.addEventListener('click',()=>{
-        let currentTask = createTask()
-        project.addTask(currentTask)
-        mainDatabase.updateProject(project)
-        console.log('hola')
-    })
+    addButton.type = 'submit' 
 
     mainForm.addEventListener('submit',()=>{
         let currentTask = createTask()
@@ -406,7 +399,6 @@ let readTask = (task) => {
     /*Project Name*/
     let projectName = createDomElement('div','taskProjectTitle','taskProjecTitle',mainDatabase.getProjectByTitle(task.projectTitle.toLowerCase()).title
     )
-    console.log('test5')
     topContainer.appendChild(projectName)
 
 

@@ -110,11 +110,9 @@ let addProjectContentStructure = (project) => {
     let projectTasks = project.tasks;
     let taskTableBody = createDOMContainer('','taskTableBody')
 
-    console.log(project)
 
     projectTasks.forEach(task => {
 
-        console.log(task)
         let taskTableBodyRow = createDOMContainer(`taskTableBodyRow`,'taskTableBodyRow')
         taskTableBodyRow.setAttribute('collapsed','true')
 
@@ -137,12 +135,10 @@ let addProjectContentStructure = (project) => {
 
         let statusValue = createDomElement('div',`${task.checklist.toString()}`,`taskTableBodyElement`,task.checklist.toString())
 
-        console.log('test0')
 
         createModalStructure(readTask(task),'modal','Information of the task',nameValue)
         createModalStructure(readTask(task),'modal','Information of the task',priorityValue)
 
-        console.log('test1')
         taskTableBodyRow.appendChild(deleteTask)
         taskTableBodyRow.appendChild(dateValue)
         taskTableBodyRow.appendChild(nameValue)
