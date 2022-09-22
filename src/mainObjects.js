@@ -1,4 +1,5 @@
 import {saveInLocalStorage, getFromLocalStorage} from './localStorage'
+import { startOfWeek, endOfWeek,isSameWeek } from 'date-fns'
 
 class Project {
 
@@ -146,6 +147,27 @@ const mainDatabase = (() => {
         return todaysTasks
     }
 
+    let getWeekTasks = () => {
+        let tasks = getTasks()
+        let today  = new Date()
+        let end  = endOfWeek(today)
+        console.log(tasks)
+        let weekTasks  = []
+
+        tasks.forEach(task => {
+
+            let taskDate = task.dueDate.split('-')
+            let currentDate = new Date(taskDate[0], taskDate[1] - 1, taskDate[2]);
+
+            if (isSameWeek(currentDate,end)){
+                weekTasks.push(task)
+            }
+        });
+
+        console.log(weekTasks)
+        return weekTasks
+    }
+
     let getMonthTasks = () => {
         let tasks = getTasks()
         let today = new Date().toISOString().split('T')[0];
@@ -170,6 +192,7 @@ const mainDatabase = (() => {
       deleteProject,
       updateProject,
       getTodaysTasks,
+      getWeekTasks,
       getMonthTasks,
       getTasks,
     };

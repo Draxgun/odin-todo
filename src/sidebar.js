@@ -39,6 +39,14 @@ let addToday = () => {
     })
 }
 
+let addWeeek = () => {
+    let weekButton = document.getElementById('weekButton')
+
+    weekButton.addEventListener('click',()=>{
+        mainDatabase.getWeekTasks()
+    })
+}
+
 let addMonth = () => {
     let monthButton = document.getElementById('monthButton')
 
@@ -71,6 +79,7 @@ let addButtonListeners = () => {
     addTaskButton();
     addProjectButton();
     addToday();
+    addWeeek();
     addMonth();
     addHome();
 }
